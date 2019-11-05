@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\EifelMono.Blazor.Core\EifelMono.Blazor.Core.csproj" />
+    <ProjectReference Include="..\..\src\EifelMono.Blazor.JavaScript\EifelMono.Blazor.JavaScript.csproj" />
+  </ItemGroup>
+
+</Project>
