@@ -15,7 +15,9 @@ namespace EifelMono.Blazor.JavaScript
             };
 
         private string SessionJsInterop =>
-           $"<script src= \"_content/{Name}/SessionJsInterop.js\"></script>";
+           $"<script src= \"_content/{Name}/Storage/LocalStorageJsInterop.js\"></script>"
+            + $"<script src= \"_content/{Name}/Storage/SessionStorageJsInterop.js\"></script>";
+
     }
 
     public static class JavaScriptAddService

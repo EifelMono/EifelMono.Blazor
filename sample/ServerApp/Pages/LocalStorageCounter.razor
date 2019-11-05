@@ -1,0 +1,54 @@
+﻿@page "/localstoragecounter"
+@using Microsoft.AspNetCore.Components
+@using System.IO
+@using EifelMono.Blazor.JavaScript.Storage
+
+<h1>Local Storage Counter</h1>
+
+
+<p>Current count: @currentCount</p>
+
+<div class="btn-toolbar">
+    <button class="btn btn-primary mr-3" @onclick="IncrementCount">Increment Count</button>
+    <button class="btn btn-secondary mr-3" @onclick="ResetCount">Reset Count</button>
+    <button class="btn btn-warning mr-3" @onclick="DeleteStorage">Delete Storage</button>
+</div>
+
+@code {
+    int currentCount = 0;
+
+    public ElementReference ele { get; set; }
+
+    public string Message { get; set; }
+    protected async override Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        try
+        {
+            currentCount = 0;
+            if (await LocalStorage.KeyExistsAsync("counter"))
+                currentCount = await LocalStorage.GetValueAsync<int>("counter");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            currentCount = 0;
+        }
+    }
+
+    async void IncrementCount()
+    {
+        currentCount++;
+        await LocalStorage.SetValueAsync("counter", currentCount);
+    }
+    async void ResetCount()
+    {
+        currentCount = 0;
+        await LocalStorage.SetValueAsync("counter", currentCount);
+    }
+
+    async void DeleteStorage()
+    {
+        await LocalStorage.DeleteKeyAsync("counter");
+    }
+}

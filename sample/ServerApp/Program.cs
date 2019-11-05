@@ -16,7 +16,6 @@ namespace ServerApp
     {
         public static void Main(string[] args)
         {
-            var names = typeof(Session).Assembly.GetManifestResourceNames();
             CreateHostBuilder(args).Build().Run();
         }
 
