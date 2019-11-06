@@ -22,19 +22,22 @@
     public string Message { get; set; }
     protected async override Task OnInitializedAsync()
     {
+        System.Diagnostics.Debug.WriteLine($"{this.GetType().Name}.OnInitializedAsync");
+        Console.WriteLine($"{this.GetType().Name}.OnInitializedAsync");
+        //try
+        //{
+        //    currentCount = 0;
+        //    if (await LocalStorage.KeyExistsAsync("counter"))
+        //        currentCount = await LocalStorage.GetValueAsync<int>("counter");
+        //}
+        //catch (Exception ex)
+        //{
+        //    Console.WriteLine(ex);
+        //    currentCount = 0;
+        //}
         await base.OnInitializedAsync();
-        try
-        {
-            currentCount = 0;
-            if (await LocalStorage.KeyExistsAsync("counter"))
-                currentCount = await LocalStorage.GetValueAsync<int>("counter");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex);
-            currentCount = 0;
-        }
     }
+
 
     async void IncrementCount()
     {
