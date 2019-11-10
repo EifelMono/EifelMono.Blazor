@@ -1,6 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Components
 @using Microsoft.JSInterop
-@inject IJSRuntime runtime
 
 @if (FullScreen)
 {
@@ -34,22 +33,22 @@ else
     {
         if (!_alreadyRendered)
         {
-            _alreadyRendered = await MonacoEditorJSInterop.InitializeEditorAsync(runtime, Model);
+            _alreadyRendered = await MonacoEditorJSInterop.InitializeEditorAsync(Model);
         }
     }
 
     public async Task<string> GetValue()
     {
-        return await MonacoEditorJSInterop.GetValueAsync(runtime, Model.Id);
+        return await MonacoEditorJSInterop.GetValueAsync(Model.Id);
     }
 
     public async Task<bool> SetValue(string newValue)
     {
-        return await MonacoEditorJSInterop.SetValueAsync(runtime, Model.Id, newValue);
+        return await MonacoEditorJSInterop.SetValueAsync(Model.Id, newValue);
     }
 
     public async Task<bool> SetTheme(string newTheme)
     {
-        return await MonacoEditorJSInterop.SetThemeAsync(runtime, Model.Id, newTheme);
+        return await MonacoEditorJSInterop.SetThemeAsync(Model.Id, newTheme);
     }
 }

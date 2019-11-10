@@ -1,0 +1,56 @@
+﻿@page "/testmonacoeditor"
+@using EifelMono.Blazor.MonacoEditor
+
+<h1>Monaco Editor</h1>
+
+<div>
+    <div>
+        Theme:
+        <select @onchange="ChangeTheme">
+            <option value="vs">Visual Studio</option>
+            <option value="vs-dark">Visual Studio Dark</option>
+            <option value="hc-black">High Contrast Black</option>
+        </select>
+    </div>
+    <div>
+        Value: <input type="text" @bind="@Value" style="width: 400px;" /> <button @onclick="SetValue">Set Value</button>
+    </div>
+    <div>
+        <button @onclick="GetValue">Get Value</button>
+    </div>
+</div>
+
+<br />
+
+<MonacoEditor @ref="_editor" Model="@_editorModel" />
+
+@functions
+{
+    private string Value { get; set; } = "// Try me! Check out Console (F12) for log";
+    public MonacoEditorModel _editorModel { get; set; }
+    public MonacoEditor _editor { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _editorModel = new MonacoEditorModel();
+        await base.OnInitializedAsync();
+    }
+
+    public async Task ChangeTheme(ChangeEventArgs e)
+    {
+        Console.WriteLine($"setting theme to: {e.Value.ToString()}");
+        await _editor.SetTheme(e.Value.ToString());
+    }
+
+    public async Task SetValue()
+    {
+        Console.WriteLine($"setting value to: {Value}");
+        await _editor.SetValue(Value);
+    }
+
+    public async Task GetValue()
+    {
+        var val = await _editor.GetValue();
+        Console.WriteLine($"value is: {val}");
+    }
+}

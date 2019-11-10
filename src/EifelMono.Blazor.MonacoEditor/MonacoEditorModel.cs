@@ -12,7 +12,7 @@ namespace EifelMono.Blazor.MonacoEditor
             Options = options;
         }
 
-        public string Id { get; set; } = $"EifelMonoMonacoEditor_{Guid.NewGuid()}";
+        public string Id { get; set; } = $"{typeof(MonacoEditorModel).Namespace}_{Guid.NewGuid()}";
         public EditorOptions Options { get; set; } = new EditorOptions();
     }
 }

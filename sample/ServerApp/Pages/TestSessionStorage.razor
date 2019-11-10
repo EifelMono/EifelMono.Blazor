@@ -1,10 +1,9 @@
-﻿@page "/localstoragecounter"
+﻿@page "/testsessionstorage"
 @using Microsoft.AspNetCore.Components
 @using System.IO
 @using EifelMono.Blazor.JavaScript.Storage
 
-<h1>Local Storage Counter</h1>
-
+<h1>Session Storage</h1>
 
 <p>Current count: @currentCount</p>
 
@@ -17,41 +16,38 @@
 @code {
     int currentCount = 0;
 
-    public ElementReference ele { get; set; }
-
     public string Message { get; set; }
     protected async override Task OnInitializedAsync()
     {
         System.Diagnostics.Debug.WriteLine($"{this.GetType().Name}.OnInitializedAsync");
         Console.WriteLine($"{this.GetType().Name}.OnInitializedAsync");
-        //try
-        //{
-        //    currentCount = 0;
-        //    if (await LocalStorage.KeyExistsAsync("counter"))
-        //        currentCount = await LocalStorage.GetValueAsync<int>("counter");
-        //}
-        //catch (Exception ex)
-        //{
-        //    Console.WriteLine(ex);
-        //    currentCount = 0;
-        //}
+        try
+        {
+            currentCount = 0;
+            if (await SessionStorage.KeyExistsAsync("counter"))
+                currentCount = await SessionStorage.GetValueAsync<int>("counter");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            currentCount = 0;
+        }
         await base.OnInitializedAsync();
     }
-
 
     async void IncrementCount()
     {
         currentCount++;
-        await LocalStorage.SetValueAsync("counter", currentCount);
+        await SessionStorage.SetValueAsync("counter", currentCount);
     }
     async void ResetCount()
     {
         currentCount = 0;
-        await LocalStorage.SetValueAsync("counter", currentCount);
+        await SessionStorage.SetValueAsync("counter", currentCount);
     }
 
     async void DeleteStorage()
     {
-        await LocalStorage.DeleteKeyAsync("counter");
+        await SessionStorage.DeleteKeyAsync("counter");
     }
 }

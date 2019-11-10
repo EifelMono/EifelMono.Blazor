@@ -3,14 +3,14 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace EifelMono.Blazor.MonacoEditor
 {
-    public class MonacoEditorHtml : BlazorComponentHtml
+    public class Init : HostHtmlInit
     {
-        public override string GetHtml(BlazorComponentHtmlType htmlType, string typeName = null)
-            => htmlType switch
+        public override string GetHtml(HostHtmlInitType initType, string typeName = null)
+            => initType switch
             {
-                BlazorComponentHtmlType.Css => Css,
-                BlazorComponentHtmlType.Js => Js,
-                BlazorComponentHtmlType.JsInterop => JsInterop,
+                HostHtmlInitType.Css => Css,
+                HostHtmlInitType.Js => Js,
+                HostHtmlInitType.JsInterop => JsInterop,
                 _ => ""
             };
 
@@ -30,7 +30,7 @@ namespace EifelMono.Blazor.MonacoEditor
     {
         public static IServiceCollection AddEifelMonoBlazorMonacoEditor(this IServiceCollection thisValue)
         {
-            BlazorComponentHtmls.Instance.AddHtml(new MonacoEditorHtml());
+            HostHtmlInits.Instance.AddInit(new Init());
             return thisValue;
         }
     }

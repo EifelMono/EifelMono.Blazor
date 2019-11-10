@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EifelMono.Blazor.JavaScript;
+using EifelMono.Blazor.MonacoEditor;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -31,6 +32,7 @@ namespace ServerApp
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
             services.AddEifelMonoBlazorJavaScript();
+            services.AddEifelMonoBlazorMonacoEditor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
