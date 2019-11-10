@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace EifelMono.Blazor.JavaScript.Storage
+namespace EifelMono.Blazor.JavaScript
 {
     public class SessionStorage
     {

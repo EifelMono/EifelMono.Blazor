@@ -15,8 +15,10 @@ namespace EifelMono.Blazor.JavaScript
             };
 
         private string SessionJsInterop =>
-           $"<script src= \"_content/{Name}/Storage/LocalStorageJsInterop.js\"></script>"
-            + $"<script src= \"_content/{Name}/Storage/SessionStorageJsInterop.js\"></script>";
+           $"<script src= \"_content/{Name}/LocalStorageJsInterop.js\"></script>"
+            + $"<script src= \"_content/{Name}/SessionStorageJsInterop.js\"></script>"
+            + $"<script src= \"_content/{Name}/MessageBoxJsInterop.js\"></script>"
+            + $"<script src= \"_content/{Name}/ClipboardJsInterop.js\"></script>";
 
     }
 

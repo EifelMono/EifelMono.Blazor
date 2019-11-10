@@ -1,7 +1,7 @@
 ﻿@page "/testlocalstorage"
 @using Microsoft.AspNetCore.Components
 @using System.IO
-@using EifelMono.Blazor.JavaScript.Storage
+@using EifelMono.Blazor.JavaScript
 
 <h1>Local Storage</h1>
 
@@ -40,6 +40,10 @@
     {
         currentCount++;
         await LocalStorage.SetValueAsync("counter", currentCount);
+        var o= await MessageBox.ShowAsync("hallo");
+        var x = o.ToJson();
+        o = await Clipboard.WriteTextAsync("TextFromJavaScript");
+        x = o.ToJson();
     }
     async void ResetCount()
     {

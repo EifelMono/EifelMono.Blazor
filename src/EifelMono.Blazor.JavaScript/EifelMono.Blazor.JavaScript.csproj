@@ -16,4 +16,8 @@
     <ProjectReference Include="..\EifelMono.Blazor.Core\EifelMono.Blazor.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Storage\" />
+  </ItemGroup>
+
 </Project>

@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EifelMono.Fluent" Version="0.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\src\EifelMono.Blazor.Core\EifelMono.Blazor.Core.csproj" />
     <ProjectReference Include="..\..\src\EifelMono.Blazor.JavaScript\EifelMono.Blazor.JavaScript.csproj" />
     <ProjectReference Include="..\..\src\EifelMono.Blazor.MonacoEditor\EifelMono.Blazor.MonacoEditor.csproj" />

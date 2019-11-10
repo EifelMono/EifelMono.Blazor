@@ -4,9 +4,9 @@ using EifelMono.Blazor.Core;
 using EifelMono.Fluent.Log;
 using Microsoft.JSInterop;
 
-namespace EifelMono.Blazor.JavaScript.Storage
+namespace EifelMono.Blazor.JavaScript
 {
-    public class StorageJsInterop 
+    public class StorageJsInterop
     {
         protected string _jSPrefix;
         public StorageJsInterop(string jSPrefix)
