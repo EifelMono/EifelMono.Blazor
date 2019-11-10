@@ -1,0 +1,55 @@
+﻿@using Microsoft.AspNetCore.Components
+@using Microsoft.JSInterop
+@inject IJSRuntime runtime
+
+@if (FullScreen)
+{
+    <div id="@Model.Id" style="width: 100%; height: @(FullScreenHeight)vh; display: flex;"></div>
+}
+else
+{
+    <div id="@Model.Id" style="width: @(Width)px; height: @(Height)px; border: 1px solid #A4A4A4;"></div>
+}
+
+@functions {
+
+    [Parameter]
+    public MonacoEditorModel Model { get; set; }
+
+    [Parameter]
+    public int Width { get; set; } = 800;
+
+    [Parameter]
+    public int Height { get; set; } = 600;
+
+    [Parameter]
+    public bool FullScreen { get; set; }
+
+    [Parameter]
+    public int FullScreenHeight { get; set; } = 100;
+
+    private bool _alreadyRendered = false;
+
+    protected override async Task OnAfterRenderAsync(bool first)
+    {
+        if (!_alreadyRendered)
+        {
+            _alreadyRendered = await MonacoEditorJSInterop.InitializeEditorAsync(runtime, Model);
+        }
+    }
+
+    public async Task<string> GetValue()
+    {
+        return await MonacoEditorJSInterop.GetValueAsync(runtime, Model.Id);
+    }
+
+    public async Task<bool> SetValue(string newValue)
+    {
+        return await MonacoEditorJSInterop.SetValueAsync(runtime, Model.Id, newValue);
+    }
+
+    public async Task<bool> SetTheme(string newTheme)
+    {
+        return await MonacoEditorJSInterop.SetThemeAsync(runtime, Model.Id, newTheme);
+    }
+}
