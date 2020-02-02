@@ -1,0 +1,19 @@
+﻿@if (Show && ChildContent is { })
+{
+    <div style="background-color:red">
+        FlowError:@ChildContent
+    </div>
+}
+
+@code {
+    public static bool s_show = false;
+    [Parameter]
+    public bool Show { get => s_show; set => s_show = value; }
+
+    public static bool s_throwOnException = false;
+    [Parameter]
+    public bool ThrowOnException { get => s_throwOnException; set => s_throwOnException = value; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}

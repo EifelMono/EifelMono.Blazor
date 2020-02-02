@@ -4,7 +4,7 @@ namespace EifelMono.Blazor.JavaScript
 { 
     public class LocalStorage
     {
-        // www/Storage/LocalStorageJSInterop.js
+        // wwwroot/LocalStorageJSInterop.js
         private static readonly string s_jSPrefx = "EifelMonoBlazorJavaScriptLocalStorageJSInterop";
         private static readonly StorageJsInterop s_instance = new StorageJsInterop(s_jSPrefx);
 

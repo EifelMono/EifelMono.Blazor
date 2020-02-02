@@ -1,14 +1,27 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using EifelMono.Fluent.Log;
 
 namespace EifelMono.Blazor.JavaScript
 {
     public class Clipboard
     {
-        // www/Storage/ClipBoardJSInterop.js
+        // https://flaviocopes.com/clipboard-api/
+        // wwwroot/ClipBoardJSInterop.js
         private static readonly string s_jSPrefix = "EifelMonoBlazorJavaScriptClipboardJSInterop";
 
         // do es not work PREMISSION!!!!
-        public static ValueTask<object> WriteTextAsync(string text)
-            => Core.HostHtmlInit.JSRuntime.InvokeAsync<object>($"{s_jSPrefix}.WriteText", new[] { text });
+        public async static ValueTask<bool> WriteTextAsync(string text)
+        {
+            try
+            {
+                return await Core.HostHtmlInit.JSRuntime.InvokeAsync<bool>($"{s_jSPrefix}.WriteText", new[] { text });
+            }
+            catch (Exception ex)
+            {
+                ex.LogException();
+            }
+            return false;
+        }
     }
 }

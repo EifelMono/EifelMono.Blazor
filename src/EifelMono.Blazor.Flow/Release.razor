@@ -1,0 +1,21 @@
+﻿@if (IsRelease)
+{
+    @ChildContent
+}
+
+@code
+{
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    private bool IsRelease
+    {
+        get
+        {
+#if DEBUG
+            return false;
+#else
+return true;
+#endif
+        }
+    }
+}

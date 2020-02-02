@@ -4,7 +4,7 @@ namespace EifelMono.Blazor.JavaScript
 {
     public class SessionStorage
     {
-        // www/Session/SessionStorageJSInterop.js
+        // wwwroot/SessionStorageJSInterop.js
         private static readonly string s_jSPrefx = "EifelMonoBlazorJavaScriptSessionStorageJSInterop";
         private static readonly StorageJsInterop s_instance = new StorageJsInterop(s_jSPrefx);
 

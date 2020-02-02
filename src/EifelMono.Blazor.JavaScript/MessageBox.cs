@@ -4,7 +4,7 @@ namespace EifelMono.Blazor.JavaScript
 {
     public class MessageBox
     {
-        // www/Storage/MessageBoxJSInterop.js
+        // wwwroot/MessageBoxJSInterop.js
         private static readonly string s_jSPrefix = "EifelMonoBlazorJavaScriptMessageBoxJSInterop";
 
         public static ValueTask<object> ShowAsync(string text)

@@ -1,5 +1,62 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
+<h1>Hello, Flow!</h1>
 
-Welcome to your new app.
+<Debug>
+    <FlowError Show="true" ThrowOnException="false"></FlowError>
+</Debug>
+
+@if (true)
+{
+    <div>xxxxTrue</div>
+}
+else
+{
+    <div>xxxxFalse </div>
+}
+
+<If Value="true">
+    <div>if value is true</div>
+</If>
+
+<If Value="false">
+    <div>if value is false</div>
+</If>
+
+<IfNot Value="false">
+    <div>ifNot value is false</div>
+</IfNot>
+
+<IfThen>
+    <div>IfThenElse Value is true</div>
+</IfThen>
+
+<IfThenElse Value="true">
+    <IfThen>
+        <div>IfThenElse Value is true</div>
+    </IfThen>
+    <IfElse>
+        <div>{IfElse if value is true</div>
+    </IfElse>
+</IfThenElse>
+
+<IfThenElse Value="false">
+    <IfThen>
+        <div>IfThenElse if Value is false</div>
+    </IfThen>
+    <IfElse>
+        <div>IfElse if Value is false</div>
+    </IfElse>
+</IfThenElse>
+
+<div>
+    <Debug>Hello Debug</Debug>
+</div>
+
+<div>
+    <Release>Hello Release</Release>
+</div>
+
+<div>
+    Welcome to your new app.
+</div>

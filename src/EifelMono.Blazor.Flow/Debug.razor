@@ -1,0 +1,21 @@
+﻿@if (IsDebug)
+{
+    @ChildContent
+}
+
+@code
+{
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    private bool IsDebug
+    {
+        get
+        {
+#if DEBUG
+            return true;
+#else
+    return false;
+#endif
+        }
+    }
+}
