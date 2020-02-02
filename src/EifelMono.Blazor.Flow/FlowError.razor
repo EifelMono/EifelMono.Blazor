@@ -1,12 +1,18 @@
-﻿@if (Show && ChildContent is { })
-{
+﻿<If Value="Show && ChildContent is { }">
     <div style="background-color:red">
         FlowError:@ChildContent
     </div>
-}
+</If>
 
 @code {
-    public static bool s_show = false;
+
+    public static bool s_show =
+#if DEBUG
+true;
+#else
+false;
+#endif
+
     [Parameter]
     public bool Show { get => s_show; set => s_show = value; }
 

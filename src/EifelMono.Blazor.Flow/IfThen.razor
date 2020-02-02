@@ -1,21 +1,18 @@
-﻿@if (IsParentOk)
-{
-    @if (Parent.Value)
-    {
+﻿<If Value="IsParentOk">
+    <If Value="Parent.Value">
         @ChildContent
-    }
-}
-else
-{
-    <FlowError>@ErrorMessage</FlowError>
-}
+    </If>
+</If>
+<IfNot Value="IsParentOk">
+    <FlowError>@ParentErrorMessage</FlowError>
+</IfNot>
 
 @code {
     [CascadingParameter]
     private IfThenElse Parent { get; set; }
 
     private bool IsParentOk => Parent is IfThenElse;
-    protected string ErrorMessage => $"{this.GetType().Name} must exist within {nameof(IfThenElse)}";
+    protected string ParentErrorMessage => $"{this.GetType().Name} must exist within {nameof(IfThenElse)}";
 
     [Parameter]
     public RenderFragment ChildContent { get; set; }
@@ -24,9 +21,7 @@ else
     protected override void OnInitialized()
     {
         if (!IsParentOk && FlowError.s_throwOnException)
-            throw new ArgumentException(nameof(Parent), ErrorMessage);
+            throw new ArgumentException(nameof(Parent), ParentErrorMessage);
         base.OnInitialized();
     }
-
-
 }

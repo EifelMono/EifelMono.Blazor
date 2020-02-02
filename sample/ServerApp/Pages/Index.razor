@@ -6,18 +6,25 @@
     <FlowError Show="true" ThrowOnException="false"></FlowError>
 </Debug>
 
+<div>
+    <Debug>Hello Debug</Debug>
+</div>
+
+<div>
+    <Release>Hello Release</Release>
+</div>
+
 @if (true)
 {
-    <div>xxxxTrue</div>
+    <div>if value is true</div>
 }
-else
-{
-    <div>xxxxFalse </div>
-}
+
 
 <If Value="true">
     <div>if value is true</div>
 </If>
+
+
 
 <If Value="false">
     <div>if value is false</div>
@@ -49,14 +56,45 @@ else
     </IfElse>
 </IfThenElse>
 
-<div>
-    <Debug>Hello Debug</Debug>
-</div>
+@if (false)
+{
+    <div>IfThenElse if Value is false</div>
+}
+else
+{
+    <div>IfElse if Value is false</div>
+}
 
-<div>
-    <Release>Hello Release</Release>
-</div>
+@switch (DateTime.Now.DayOfWeek)
+{
+    case DayOfWeek.Monday:
+        {
+            <div>Monday</div>
+            break;
+        }
+    case DayOfWeek.Sunday:
+        {
+            <div>Sunday</div>
+            break;
+        }
+}
+
+<Switch Value="DateTime.Now.DayOfWeek">
+    <Case Value="DayOfWeek.Monday">
+        Monday
+    </Case>
+    <Case Value="DayOfWeek.Sunday">
+        Sunday
+    </Case>
+    <Case Value="DateTime.Now">
+        Sunday
+    </Case>
+</Switch>
+
+
 
 <div>
     Welcome to your new app.
 </div>
+
+

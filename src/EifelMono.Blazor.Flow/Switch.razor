@@ -1,10 +1,13 @@
-﻿<IfNot Value="Value is { }">
+﻿<CascadingValue Value="this">
     @ChildContent
-</IfNot>
+</CascadingValue>
 
 @code {
     [Parameter]
     public object Value { get; set; }
     [Parameter]
     public RenderFragment ChildContent { get; set; }
+
+    public bool IsEquals(object value)
+        => object.Equals(Value, value);
 }
