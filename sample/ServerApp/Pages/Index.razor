@@ -10,6 +10,16 @@
 
 <Release><div>Hello Release</div></Release>
 
+
+<IfStringIsNullOrEmpty Value="@Text">
+    <LogTrace Message="Text is null"></LogTrace>
+</IfStringIsNullOrEmpty>
+
+@(Text = "1");
+<IfNotStringIsNullOrEmpty Value="@Text">
+    <LogTrace Message="Text is not null"></LogTrace>
+</IfNotStringIsNullOrEmpty>
+
 <Log Message="@($"{DateTime.Now} Log")"></Log>
 
 <Log LogLevel="Microsoft.Extensions.Logging.LogLevel.Debug" Message="@($"{DateTime.Now} Log LogLevel")"></Log>

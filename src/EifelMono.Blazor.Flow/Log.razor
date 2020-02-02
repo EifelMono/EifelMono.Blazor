@@ -1,8 +1,6 @@
 ﻿@using Microsoft.Extensions.Logging
 @inject ILoggerFactory Logger
 
-@Message
-
 @code {
     private string _category;
     [Parameter]
@@ -13,7 +11,7 @@
     }
 
     [Parameter]
-    public LogLevel LogLevel { get; set; } = LogLevel.None;
+    public LogLevel LogLevel { get; set; } = LogLevel.Trace;
 
     [Parameter]
     public string Message { get; set; }

@@ -1,0 +1,10 @@
+﻿<If Value="@(string.IsNullOrEmpty(Value))">
+    @ChildContent
+</If>
+
+@code {
+    [Parameter]
+    public string Value { get; set; }
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}
