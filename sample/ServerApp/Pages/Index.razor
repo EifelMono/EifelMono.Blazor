@@ -6,13 +6,21 @@
     <FlowError Show="true" ThrowOnException="false"></FlowError>
 </Debug>
 
-<div>
-    <Debug>Hello Debug</Debug>
-</div>
+<Debug><div>Hello Debug</div></Debug>
 
-<div>
-    <Release>Hello Release</Release>
-</div>
+<Release><div>Hello Release</div></Release>
+
+<Log Message="@($"{DateTime.Now} Log")"></Log>
+
+<Log LogLevel="Microsoft.Extensions.Logging.LogLevel.Debug" Message="@($"{DateTime.Now} Log")"></Log>
+
+<LogCritical Message="@($"{DateTime.Now} LogCritical")"></LogCritical>
+<LogDebug Message="@($"{DateTime.Now} LogDebug")"></LogDebug>
+<LogError Message="@($"{DateTime.Now} LogError")"></LogError>
+<LogInformation Message="@($"{DateTime.Now} LogInformation")"></LogInformation>
+<LogTrace Message="@($"{DateTime.Now} LogTrace")"></LogTrace>
+<LogWarning Message="@($"{DateTime.Now} LogWarning")"></LogWarning>
+
 
 @if (true)
 {
