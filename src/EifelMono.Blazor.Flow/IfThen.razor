@@ -1,9 +1,9 @@
-﻿<If Value="IsParentOk">
-    <If Value="Parent.Value">
+﻿<If Value="@IsParentOk">
+    <If Value="@Parent.Value">
         @ChildContent
     </If>
 </If>
-<IfNot Value="IsParentOk">
+<IfNot Value="@IsParentOk">
     <FlowError>@ParentErrorMessage</FlowError>
 </IfNot>
 

@@ -1,14 +1,14 @@
-﻿<IfThenElse Value="IsParentOk && IsValueOk">
+﻿<IfThenElse Value="@(IsParentOk && IsValueOk)">
     <IfThen>
-        <If Value="Parent.IsEquals(Value)">
+        <If Value="@Parent.IsEquals(Value)">
             @ChildContent
         </If>
     </IfThen>
     <IfElse>
-        <IfNot Value="IsParentOk">
+        <IfNot Value="@IsParentOk">
             <FlowError>@ParentErrorMessage</FlowError>
         </IfNot>
-        <IfNot Value="IsValueOk">
+        <IfNot Value="@IsValueOk">
             <FlowError>@ValueErrorMessage</FlowError>
         </IfNot>
     </IfElse>

@@ -12,7 +12,7 @@
 
 <Log Message="@($"{DateTime.Now} Log")"></Log>
 
-<Log LogLevel="Microsoft.Extensions.Logging.LogLevel.Debug" Message="@($"{DateTime.Now} Log")"></Log>
+<Log LogLevel="Microsoft.Extensions.Logging.LogLevel.Debug" Message="@($"{DateTime.Now} Log LogLevel")"></Log>
 
 <LogCritical Message="@($"{DateTime.Now} LogCritical")"></LogCritical>
 <LogDebug Message="@($"{DateTime.Now} LogDebug")"></LogDebug>
@@ -104,5 +104,10 @@ else
 <div>
     Welcome to your new app.
 </div>
+
+@code
+{
+    string Text { get; set; } = null;
+}
 
 
