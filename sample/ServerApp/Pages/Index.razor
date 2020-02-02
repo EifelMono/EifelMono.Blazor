@@ -38,25 +38,26 @@
 }
 
 
-<If Value="true">
+<If Value="@true">
     <div>if value is true</div>
 </If>
 
 
 
-<If Value="false">
+<If Value="@false">
     <div>if value is false</div>
 </If>
 
-<IfNot Value="false">
+<IfNot Value="@false">
     <div>ifNot value is false</div>
 </IfNot>
 
+@*Error Not allowed without IfThenElse*@
 <IfThen>
     <div>IfThenElse Value is true</div>
 </IfThen>
 
-<IfThenElse Value="true">
+<IfThenElse Value="@true">
     <IfThen>
         <div>IfThenElse Value is true</div>
     </IfThen>
@@ -65,7 +66,7 @@
     </IfElse>
 </IfThenElse>
 
-<IfThenElse Value="false">
+<IfThenElse Value="@false">
     <IfThen>
         <div>IfThenElse if Value is false</div>
     </IfThen>
@@ -83,7 +84,7 @@ else
     <div>IfElse if Value is false</div>
 }
 
-@switch (DateTime.Now.DayOfWeek)
+@switch (@DateTime.Now.DayOfWeek)
 {
     case DayOfWeek.Monday:
         {
@@ -97,14 +98,15 @@ else
         }
 }
 
-<Switch Value="DateTime.Now.DayOfWeek">
-    <Case Value="DayOfWeek.Monday">
+<Switch Value="@DateTime.Now.DayOfWeek">
+    <Case Value="@DayOfWeek.Monday">
         Monday
     </Case>
-    <Case Value="DayOfWeek.Sunday">
+    <Case Value="@DayOfWeek.Sunday">
         Sunday
     </Case>
-    <Case Value="DateTime.Now">
+    @*Error wrong Type*@
+    <Case Value="@DateTime.Now">
         Sunday
     </Case>
 </Switch>
