@@ -71,6 +71,7 @@
         <div>IfThenElse IfElse Value is false</div>
     </IfElse>
 </IfThenElse>
+<hr />
 
 @*Error not allowed without IfThenElse*@
 <IfThen>
@@ -78,15 +79,23 @@
 </IfThen>
 
 <hr />
-@(Text = "1");
 
+@{
+    string Text = null;
+}
 <IfStringIsNullOrEmpty Value="@Text">
-    <LogTrace Message="Text is null"></LogTrace>
+    <div>IfNotStringIsNullOrEmpty is null or empty</div>
+    <LogTrace Message="IfNotStringIsNullOrEmpty is null or empty"></LogTrace>
 </IfStringIsNullOrEmpty>
 
-@(Text = "1");
+
+@{
+    Text = "123";
+}
 <IfNotStringIsNullOrEmpty Value="@Text">
-    <LogTrace Message="Text is not null"></LogTrace>
+    <div>IfNotStringIsNullOrEmpty is not null or empty</div>
+    <div>Value=@Text</div>
+    <LogTrace Message="IfNotStringIsNullOrEmpty is not null or empty"></LogTrace>
 </IfNotStringIsNullOrEmpty>
 <hr />
 
@@ -105,11 +114,9 @@
     </Case>
 </Switch>
 
+<hr />
+
 @*Error not allowed without Switch*@
-<Case Value="error">
+<Case Value="0">
     <div>Case .....</div>
 </Case>
-
-@code {
-    protected string Text { get; set; }
-}
