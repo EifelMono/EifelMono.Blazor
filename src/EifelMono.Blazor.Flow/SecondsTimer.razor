@@ -1,0 +1,10 @@
+﻿<Timer Intervall="@TimeSpan.FromSeconds(Seconds)">
+    @ChildContent
+</Timer>
+
+@code {
+    [Parameter]
+    public int Seconds { get; set; } = 1;
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}

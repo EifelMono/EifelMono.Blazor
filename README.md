@@ -8,7 +8,11 @@ Stuff for your Blazor
 
 ### Timer Component
 ```csharp
-<Timer>@DateTime.Now.ToString()</Timer>
+<Timer Intervall="@TimeSpan.FromSeconds(10)">@DateTime.Now.ToString()</Timer>
+
+<SecondsTimer Seconds="10">@DateTime.Now.ToString()</SecondsTimer>
+
+<MinutesTimer Minutes="1">@DateTime.Now.ToString()</MinutesTimer>
 ```
 
 ### Debug/Release Component's
@@ -34,9 +38,13 @@ Stuff for your Blazor
 
 ### If Component's
 ```csharp
-<If Value="@false">
-    <div>If Value is false</div>
+<If Value="@true">
+    <div>If Value is true</div>
 </If>
+
+<IfNot Value="@false">
+    <div>IfNot Value is false</div>
+</IfNot>
 
 <IfThenElse Value="@true">
     <IfThen>

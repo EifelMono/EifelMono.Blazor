@@ -4,11 +4,29 @@
 <h2>Timer Component</h2>
 
 <div>
-    Default Timer: <Timer>@DateTime.Now.ToString()</Timer>
+    Default Timer (1 Seconds): <Timer>@DateTime.Now.ToString()</Timer>
 </div>
 <div>
     10 Second: <Timer Intervall="@TimeSpan.FromSeconds(10)">@DateTime.Now.ToString()</Timer>
 </div>
+
+<div>
+    10 Second with SecondsTimer: <SecondsTimer Seconds="10">@DateTime.Now.ToString()</SecondsTimer>
+</div>
+<div>
+    1 Minute with MinutesTimer: <MinutesTimer Minutes="1">@DateTime.Now.ToString()</MinutesTimer>
+</div>
+
+
+<Timer>
+    @{ 
+        TimerCounter++;
+        IncrementTimerCounterInMethode();
+    }   
+    <div>
+        TimerCounter: @TimerCounter
+    </div>
+</Timer>
 <hr />
 
 <h2>Debug/Release Component's</h2>
@@ -120,3 +138,14 @@
 <Case Value="0">
     <div>Case .....</div>
 </Case>
+
+
+@code{
+    int TimerCounter { get; set; }
+
+    private void IncrementTimerCounterInMethode()
+    {
+        TimerCounter++;
+    }
+
+}
