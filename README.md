@@ -46,14 +46,14 @@ Stuff for your Blazor
     <div>IfNot Value is false</div>
 </IfNot>
 
-<IfThenElse Value="@true">
-    <IfThen>
-        <div>IfThenElse IfThen Value is true</div>
-    </IfThen>
-    <IfElse>
-        <div>IfThenElse IfElse Value is true</div>
-    </IfElse>
-</IfThenElse>
+<If Value="@true">
+    <Then>
+        <div>If Then Value is true</div>
+    </Then>
+    <Else>
+        <div>If Else Value is true</div>
+    </Else>
+</If>
 ```
 
 ### Switch Component's
@@ -67,9 +67,6 @@ Stuff for your Blazor
     </Case>
 </Switch>
 ```
-
-
-
 
 ## Blazor Components base 
 
