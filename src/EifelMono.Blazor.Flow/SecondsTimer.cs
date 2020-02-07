@@ -8,16 +8,11 @@ namespace EifelMono.Blazor.Flow
         public SecondsTimer()
             => Seconds = 1;
 
-        protected int _seconds;
         [Parameter]
         public int Seconds
         {
-            get => _seconds;
-            set
-            {
-                base.Intervall = TimeSpan.FromSeconds(_seconds);
-                _seconds = value;
-            }
+            get => Intervall.Seconds;
+            set => Intervall = TimeSpan.FromSeconds(value);
         }
     }
 }
