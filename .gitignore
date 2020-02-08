@@ -250,3 +250,10 @@ tools/**
 # htmldoc
 **/htmldoc/**
 
+# cake.build
+**/tools/**
+!**/tools/packages.config
+tools/**
+
+# Flow.Log
+!**/Flow.Log/*.*
