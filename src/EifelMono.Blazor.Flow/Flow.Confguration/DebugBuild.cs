@@ -1,14 +1,12 @@
 ﻿namespace EifelMono.Blazor.Flow
 {
-    public class Debug : If
+    public class DebugBuild : If
     {
         protected override bool Condition() =>
 #if DEBUG
-            true
+            true;
 #else
-            false
+            false;
 #endif
-            ;
-
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace EifelMono.Blazor.Flow
 {
-    public class Release : Debug
+    public class ReleaseBuild : DebugBuild
     {
         protected override bool Condition() => !base.Condition();
     }

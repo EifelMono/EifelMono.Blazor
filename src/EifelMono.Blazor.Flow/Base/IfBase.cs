@@ -20,12 +20,12 @@ namespace EifelMono.Blazor.Flow.Base
             base.BuildRenderTree(builder);
             if (Then is { } || Else is { })
             {
-                builder.AddContent(0, Condition() ? Then : Else);
+                builder?.AddContent(0, Condition() ? Then : Else);
             }
             else
             {
                 if (Condition())
-                    builder.AddContent(2, ChildContent);
+                    builder?.AddContent(2, ChildContent);
             }
         }
     }

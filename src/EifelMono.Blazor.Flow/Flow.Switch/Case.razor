@@ -1,18 +1,20 @@
-﻿@*<IfThenElse Value="@(IsParentOk && IsValueOk)">
-    <IfThen>
+﻿@namespace EifelMono.Blazor.Flow
+
+<If Value="@(IsParentOk && IsValueOk)">
+    <Then>
         <If Value="@Parent.IsEquals(Value)">
             @ChildContent
         </If>
-    </IfThen>
-    <IfElse>
+    </Then>
+    <Else>
         <IfNot Value="@IsParentOk">
             <FlowError>@ParentErrorMessage</FlowError>
         </IfNot>
         <IfNot Value="@IsValueOk">
             <FlowError>@ValueErrorMessage</FlowError>
         </IfNot>
-    </IfElse>
-</IfThenElse>*@
+    </Else>
+</If>
 
 @code {
     [CascadingParameter]

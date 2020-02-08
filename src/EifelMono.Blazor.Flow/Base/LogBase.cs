@@ -10,11 +10,11 @@ namespace EifelMono.Blazor.Flow.Base
         [Parameter]
         public string Category
         {
-            get => (_category ?? (_category = this.GetType().Namespace));
+            get => (_category ?? (_category = GetType().Namespace));
             set
             {
                 _category = value;
-                _logger = null;
+                Logger = null;
             }
         }
 
@@ -23,16 +23,16 @@ namespace EifelMono.Blazor.Flow.Base
 
         [Inject]
         public ILoggerFactory LoggerFactory { get; set; }
-        protected ILogger _logger;
+        protected ILogger Logger { get; set; }
 
         protected LogLevel LogLevel { get; set; } = LogLevel.Trace;
 
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
             base.BuildRenderTree(builder);
-            if (!(_logger is { }))
-                _logger = LoggerFactory.CreateLogger(Category);
-            _logger.Log(LogLevel, Message);
+            if (!(Logger is { }))
+                Logger = LoggerFactory.CreateLogger(Category);
+            Logger.Log(LogLevel, Message);
         }
     }
 }

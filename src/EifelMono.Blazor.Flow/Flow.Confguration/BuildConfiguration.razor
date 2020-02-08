@@ -1,0 +1,29 @@
+﻿@using EifelMono.Blazor.Flow.Base
+
+@namespace EifelMono.Blazor.Flow
+
+<If Value="@Configuration">
+    <Then>
+        @Debug
+    </Then>
+    <Else>
+        @Release
+    </Else>
+</If>
+
+@code {
+
+    public bool Configuration
+        =>
+#if DEBUG
+        true;
+#else
+        false;
+#endif
+
+    [Parameter]
+    public RenderFragment Debug { get; set; }
+
+    [Parameter]
+    public RenderFragment Release { get; set; }
+}
