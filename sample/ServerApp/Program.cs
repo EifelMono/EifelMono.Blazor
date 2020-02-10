@@ -12,6 +12,11 @@ using Microsoft.Extensions.Logging;
 
 namespace ServerApp
 {
+    public static partial class _
+    {
+        public static T[] Array<T>(params T[] values)
+            => values;
+    }
     public class Program
     {
         public static void Main(string[] args)

@@ -1,4 +1,6 @@
-﻿@namespace EifelMono.Blazor.Flow
+﻿@using System.Linq.Expressions
+@namespace EifelMono.Blazor.Flow
+@typeparam T
 
 <If Value="@(IsParentOk && IsValueOk)">
     <Then>
@@ -18,15 +20,16 @@
 
 @code {
     [CascadingParameter]
-    private Switch Parent { get; set; }
+    private Switch<T> Parent { get; set; }
 
-    private bool IsParentOk => Parent is Switch;
-    protected string ParentErrorMessage => $"{this.GetType().Name} must exist within {nameof(Switch)}";
+    private bool IsParentOk => Parent is Switch<T>;
+    protected string ParentErrorMessage => $"{this.GetType().Name} must exist within {nameof(Switch<T>)}";
 
     private bool IsValueOk => object.Equals(Value?.GetType(), Parent?.Value?.GetType());
     protected string ValueErrorMessage => $"Type Case.Value {Value?.GetType().Name} must be equal type Switch.value {Parent?.Value?.GetType().Name}";
     [Parameter]
-    public object Value { get; set; }
+    public T Value { get; set; }
+
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 

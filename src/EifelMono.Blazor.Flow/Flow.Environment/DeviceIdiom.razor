@@ -1,0 +1,22 @@
+﻿
+@namespace EifelMono.Blazor.Flow
+
+<div>
+    Not Done
+</div>
+
+@code{
+    [Parameter]
+    public RenderFragment Desktop { get; set; }
+    [Parameter]
+    public RenderFragment Phone { get; set; }
+    [Parameter]
+    public RenderFragment Tablet{ get; set; }
+    [Parameter]
+    public RenderFragment TV { get; set; }
+    [Parameter]
+    public RenderFragment Watch { get; set; }
+    [Parameter]
+    public RenderFragment Unsupported { get; set; }
+}
+

@@ -8,7 +8,7 @@
     <Owners>eifelmono, Andreas Klaperich</Owners>
     <PackageProjectUrl>https://github.com/EifelMono/EifelMono.Blazor</PackageProjectUrl>
     <Title>EifelMono.Blazor.Flow</Title>
-    <Description>Flow and more for Blazor If, Switch, Timer and more</Description>
+    <Description>Blazor Flow Components (If, Switch, Timer, ...)</Description>
     <LangVersion>8.0</LangVersion>
     <NullableReferenceTypes>true</NullableReferenceTypes>
     <RepositoryUrl>https://github.com/EifelMono/EifelMono.Fluent.git</RepositoryUrl>

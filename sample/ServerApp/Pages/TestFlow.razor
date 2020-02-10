@@ -1,185 +1,186 @@
 ﻿@page "/testflow"
 <h1>Flow</h1>
 
-    <h2>Timer Component</h2>
+<h2>Timer Component</h2>
 
-    <div>
-        Default Timer (1 Seconds): <Timer>@DateTime.Now.ToString()</Timer>
-    </div>
-    <div>
-        10 Second: <Timer Intervall="@TimeSpan.FromSeconds(10)">@DateTime.Now</Timer>
-    </div>
+<div>
+    Default Timer (1 Seconds): <Timer>@DateTime.Now.ToString()</Timer>
+</div>
+<div>
+    10 Second: <Timer Intervall="@TimeSpan.FromSeconds(10)">@DateTime.Now</Timer>
+</div>
 
-    <div>
-        10 Second with SecondsTimer: <SecondsTimer Seconds="10">@DateTime.Now.ToString()</SecondsTimer>
-    </div>
-    <div>
-        1 Minute with MinutesTimer: <MinutesTimer Minutes="1">@DateTime.Now.ToString()</MinutesTimer>
-    </div>
+<div>
+    10 Second with SecondsTimer: <SecondsTimer Seconds="10">@DateTime.Now.ToString()</SecondsTimer>
+</div>
+<div>
+    1 Minute with MinutesTimer: <MinutesTimer Minutes="1">@DateTime.Now.ToString()</MinutesTimer>
+</div>
 
-    <Timer>
-        @{
-            TimerCounter++;
-            IncrementTimerCounterInMethode();
-        }
+<Timer>
+    @{
+        TimerCounter++;
+        IncrementTimerCounterInMethode();
+    }
+    <div>
+        TimerCounter: @TimerCounter
+    </div>
+</Timer>
+
+@{
+    Timer RefTimer = null;
+    int TimerCounterInline = 0;
+}
+<div>
+    <Timer @ref="@RefTimer" Intervall="TimeSpan.FromSeconds(2)">
+        @{ TimerCounterInline++;}
         <div>
-            TimerCounter: @TimerCounter
+            TimerCounter: @TimerCounterInline Timer.Intervall: @RefTimer.Intervall
         </div>
     </Timer>
+</div>
+<hr />
 
-    @{
-        Timer RefTimer = null;
-        int TimerCounterInline = 0;
-    }
-    <div>
-        <Timer @ref="@RefTimer" Intervall="TimeSpan.FromSeconds(2)">
-            @{ TimerCounterInline++;}
-            <div>
-                TimerCounter: @TimerCounterInline Timer.Intervall: @RefTimer.Intervall
-            </div>
-        </Timer>
-    </div>
-    <hr />
+<h2>Debug/Release Component's</h2>
 
-    <h2>Debug/Release Component's</h2>
+<BuildConfiguration>
+    <Debug>
 
-    <BuildConfiguration>
-        <Debug>
+    </Debug>
+    <Release>
 
-        </Debug>
-        <Release>
+    </Release>
+</BuildConfiguration>
+<DebugBuild>
+    <div>We are running in the Debug mode</div>
+    Show Error on the screen
+    And do not throw Exceptions
+    <FlowError Show="@true" ThrowOnException="@false"></FlowError>
+</DebugBuild>
 
-        </Release>
-    </BuildConfiguration>
-    <DebugBuild>
-        <div>We are running in the Debug mode</div>
-        Show Error on the screen
-        And do not throw Exceptions
-        <FlowError Show="@true" ThrowOnException="@false"></FlowError>
-    </DebugBuild>
+<ReleaseBuild>
+    <div>We are running in the Release mode</div>
+</ReleaseBuild>
+<hr />
 
-    <ReleaseBuild>
-        <div>We are running in the Release mode</div>
-    </ReleaseBuild>
-    <hr />
+<h2>Log Component's</h2>
 
-    <h2>Log Component's</h2>
+<div>Writing Logs with Microsoft.Extensions.Logging and ILoggerFactory</div>
+<Log Message="@($"{DateTime.Now} Log")"></Log>
 
-    <div>Writing Logs with Microsoft.Extensions.Logging and ILoggerFactory</div>
-    <Log Message="@($"{DateTime.Now} Log")"></Log>
+<Log LogLevel="@Microsoft.Extensions.Logging.LogLevel.Debug" Message="@($"{DateTime.Now} Log LogLevel")"></Log>
 
-    <Log LogLevel="@Microsoft.Extensions.Logging.LogLevel.Debug" Message="@($"{DateTime.Now} Log LogLevel")"></Log>
+<LogCritical Message="@($"{DateTime.Now} LogCritical")"></LogCritical>
+<LogDebug Message="@($"{DateTime.Now} LogDebug")"></LogDebug>
+<LogError Message="@($"{DateTime.Now} LogError")"></LogError>
+<LogInformation Message="@($"{DateTime.Now} LogInformation")"></LogInformation>
+<LogTrace Message="@($"{DateTime.Now} LogTrace")"></LogTrace>
+<LogWarning Message="@($"{DateTime.Now} LogWarning")"></LogWarning>
+<hr />
 
-    <LogCritical Message="@($"{DateTime.Now} LogCritical")"></LogCritical>
-    <LogDebug Message="@($"{DateTime.Now} LogDebug")"></LogDebug>
-    <LogError Message="@($"{DateTime.Now} LogError")"></LogError>
-    <LogInformation Message="@($"{DateTime.Now} LogInformation")"></LogInformation>
-    <LogTrace Message="@($"{DateTime.Now} LogTrace")"></LogTrace>
-    <LogWarning Message="@($"{DateTime.Now} LogWarning")"></LogWarning>
-    <hr />
+<h2>If Component's</h2>
 
-    <h2>If Component's</h2>
+<If Value="@true">
+    <div>If Value is true</div>
+</If>
 
-    <If Value="@true">
-        <div>If Value is true</div>
-    </If>
+<If Value="@false">
+    <div>If Value is false</div>
+</If>
 
-    <If Value="@false">
-        <div>If Value is false</div>
-    </If>
+<IfNot Value="@true">
+    <div>IfNot Value is true</div>
+</IfNot>
 
-    <IfNot Value="@true">
-        <div>IfNot Value is true</div>
-    </IfNot>
+<IfNot Value="@false">
+    <div>IfNot Value is false</div>
+</IfNot>
 
-    <IfNot Value="@false">
-        <div>IfNot Value is false</div>
-    </IfNot>
+<If Value="@true">
+    <Then>
+        <div>If Then Value is true</div>
+    </Then>
+    <Else>
+        <div>If Else Value is true</div>
+    </Else>
+</If>
 
-    <If Value="@true">
-        <Then>
-            <div>If Then Value is true</div>
-        </Then>
-        <Else>
-            <div>If Else Value is true</div>
-        </Else>
-    </If>
+<IfNot Value="@true">
+    <Then>
+        <div>IfNot Then Value is true</div>
+    </Then>
+    <Else>
+        <div>IfNot Else Value is true</div>
+    </Else>
+</IfNot>
 
-    <IfNot Value="@true">
-        <Then>
-            <div>IfNot Then Value is true</div>
-        </Then>
-        <Else>
-            <div>IfNot Else Value is true</div>
-        </Else>
-    </IfNot>
+<If Value="@false">
+    <Then>
+        <div>If Then Value is false</div>
+    </Then>
+    <Else>
+        <div>If Else Value is false</div>
+    </Else>
+</If>
 
-    <If Value="@false">
-        <Then>
-            <div>If Then Value is false</div>
-        </Then>
-        <Else>
-            <div>If Else Value is false</div>
-        </Else>
-    </If>
+<IfNot Value="@false">
+    <Then>
+        <div>IfNot Then Value is false</div>
+    </Then>
+    <Else>
+        <div>IfNot Else Value is false</div>
+    </Else>
+</IfNot>
+<hr />
 
-    <IfNot Value="@false">
-        <Then>
-            <div>IfNot Then Value is false</div>
-        </Then>
-        <Else>
-            <div>IfNot Else Value is false</div>
-        </Else>
-    </IfNot>
-    <hr />
+@{
+    string Text = null;
+}
+<IfStringIsNullOrEmpty Value="@Text">
+    <div>IfNotStringIsNullOrEmpty is null or empty</div>
+    <LogTrace Message="IfNotStringIsNullOrEmpty is null or empty"></LogTrace>
+</IfStringIsNullOrEmpty>
 
-    @{
-        string Text = null;
-    }
-    <IfStringIsNullOrEmpty Value="@Text">
-        <div>IfNotStringIsNullOrEmpty is null or empty</div>
-        <LogTrace Message="IfNotStringIsNullOrEmpty is null or empty"></LogTrace>
-    </IfStringIsNullOrEmpty>
+@{
+    Text = "123";
+}
+<IfNotStringIsNullOrEmpty Value="@Text">
+    <div>IfNotStringIsNullOrEmpty is not null or empty</div>
+    <div>Value=@Text</div>
+    <LogTrace Message="IfNotStringIsNullOrEmpty is not null or empty"></LogTrace>
+</IfNotStringIsNullOrEmpty>
+<hr />
 
-    @{
-        Text = "123";
-    }
-    <IfNotStringIsNullOrEmpty Value="@Text">
-        <div>IfNotStringIsNullOrEmpty is not null or empty</div>
-        <div>Value=@Text</div>
-        <LogTrace Message="IfNotStringIsNullOrEmpty is not null or empty"></LogTrace>
-    </IfNotStringIsNullOrEmpty>
-    <hr />
+<h2>Switch/Case Component</h2>
 
-    <h2>Switch/Case Component</h2>
 
-    <Switch Value="@DateTime.Now.DayOfWeek">
-        <Case Value="@DayOfWeek.Monday">
-            Monday
-        </Case>
-        <Case Value="@DayOfWeek.Sunday">
-            Sunday
-        </Case>
-        Error wrong Type
-        <Case Value="@DateTime.Now">
-            Sunday
-        </Case>
-    </Switch>
+<Switch Value="@DateTime.Now.DayOfWeek">
+    <Case Value="@DayOfWeek.Monday">
+        Monday
+    </Case>
+    <Case Value="@DayOfWeek.Sunday">
+        Sunday
+    </Case>
+    Error wrong Type
+    <Case Value="@DateTime.Now">
+        Sunday
+    </Case>
+</Switch>
 
-    <hr />
+<hr />
 
     Error not allowed without Switch
-    <Case Value="0">
-        <div>Case .....</div>
-    </Case>
+<Case Value="0">
+    <div>Case .....</div>
+</Case>
 
 
-    @code{
-        int TimerCounter { get; set; }
+@code{
+    int TimerCounter { get; set; }
 
-        private void IncrementTimerCounterInMethode()
-        {
-            TimerCounter++;
-        }
-
+    private void IncrementTimerCounterInMethode()
+    {
+        TimerCounter++;
     }
+
+}
