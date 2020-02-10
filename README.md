@@ -17,13 +17,22 @@ Stuff for your Blazor
 
 ### Debug/Release Component's
 ```csharp
-<Debug>
-    <div>We are running in the Debug mode</div>
-</Debug>
+<BuildConfiguration>
+    <Debug>
+        <div>We are running in the Debug mode</div>
+    </Debug>
+    <Release>
+        <div>We are running in the Release mode</div>
+    </Release>
+</BuildConfiguration>
 
-<Release>
+<DebugBuild>
+    <div>We are running in the Debug mode</div>
+</DebugBuild>
+
+<ReleaseBuild>
     <div>We are running in the Release mode</div>
-</Release>
+</ReleaseBuild>
 ```
 
 ### Log Component's
