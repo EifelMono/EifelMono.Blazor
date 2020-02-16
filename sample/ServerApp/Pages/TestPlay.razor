@@ -1,23 +1,74 @@
 ﻿@page "/testplay"
 <h1>Play</h1>
 
-<ForEach Items="@(Enum.GetNames(typeof(DayOfWeek)))">
-    <div>@context.Index @context.Item</div>
-</ForEach>
+@*<OSPlatform>
+        <Windows>
+            Windows!
+        </Windows>
+        <Linux>
+            Linux!
+        </Linux>
+        <OSX>
+            OSX!
+        </OSX>
+    </OSPlatform>
 
-<Timer>
-    @code{TestTimerView RefTestTimerView = null;}
-    @{RefTestTimerView.Refresh(); }
-    <TestTimerView @ref="RefTestTimerView">
-    </TestTimerView>
-</Timer>
-
-<button class="btn btn-primary" type="button" @onclick="ButtonClick">Timer Refresh</button>
-
-<button class="btn btn-primary" type="button" @onclick="ButtonClick2">Refresh2</button>
+    <DeviceIdiom>
+        <Desktop>
+            Desktop!
+        </Desktop>
+    </DeviceIdiom>*@
 
 
-<TestTimerView2 @ref="RefTestTimerView2"><TestTimerView></TestTimerView></TestTimerView2>
+
+@foreach (var item in new Enum.GetNames(typeof(DayOfWeek)))
+{
+    <div>item</div>
+}
+
+
+@*@{ var X = 10;}
+    <If Condition="@(X> 5)">
+        "Hallo"
+    </If>
+
+    <While Condition="@true">
+        @{ var WhileContext = context;}
+
+        <LogInformation Message="@WhileContext.Index.ToString()"></LogInformation>
+
+        <div>@WhileContext.Index</div>
+
+        <If Condition="@(WhileContext.Index> 5)">
+            @WhileContext.Break()
+        </If>
+
+        @if (WhileContext.Index > 5)
+            {
+                WhileContext.Break();
+            }
+    </While>*@
+
+
+
+
+@*<ForEach Items="@(Enum.GetNames(typeof(DayOfWeek)))">
+        <div>@context.Index @context.Item</div>
+    </ForEach>
+
+    <Timer>
+        @code{TestTimerView RefTestTimerView = null;}
+        @{RefTestTimerView.Refresh(); }
+        <TestTimerView @ref="RefTestTimerView">
+        </TestTimerView>
+    </Timer>
+
+    <button class="btn btn-primary" type="button" @onclick="ButtonClick">Timer Refresh</button>
+
+    <button class="btn btn-primary" type="button" @onclick="ButtonClick2">Refresh2</button>
+
+
+    <TestTimerView2 @ref="RefTestTimerView2"><TestTimerView></TestTimerView></TestTimerView2>*@
 
 @code{
 

@@ -16,4 +16,9 @@
     <ProjectReference Include="..\..\src\EifelMono.Blazor.MonacoEditor\EifelMono.Blazor.MonacoEditor.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Pages.Flow\" />
+    <Folder Include="Pages\Pages.LocalStorage\" />
+  </ItemGroup>
+
 </Project>

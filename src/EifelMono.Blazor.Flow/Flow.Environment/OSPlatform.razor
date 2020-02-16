@@ -1,0 +1,20 @@
+﻿@namespace EifelMono.Blazor.Flow
+
+<If Condition="@System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows)">
+    @Windows
+</If>
+<If Condition="@System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Linux)">
+    @Linux
+</If>
+<If Condition="@System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.OSX)">
+    @OSX
+</If>
+
+@code {
+    [Parameter]
+    public RenderFragment Windows { get; set; }
+    [Parameter]
+    public RenderFragment Linux { get; set; }
+    [Parameter]
+    public RenderFragment OSX { get; set; }
+}

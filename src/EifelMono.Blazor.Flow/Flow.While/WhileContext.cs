@@ -1,13 +1,22 @@
-﻿namespace EifelMono.Blazor.Flow
+﻿using System;
+
+namespace EifelMono.Blazor.Flow
 {
     public class WhileContext
     {
-        public WhileContext(ref bool item, int index)
+        public WhileContext(Base.WhileBase @while, int index)
         {
-            Condition = item;
+            While = @while;
             Index = index;
         }
-        public bool Condition { get; set; }
+
+        private Base.WhileBase While { get; set; }
+
+        public bool Break()
+            => While.Break = true;
         public int Index { get; }
+
+        public override string ToString()
+            => $"Index={Index} Break={While.Break}";
     }
 }

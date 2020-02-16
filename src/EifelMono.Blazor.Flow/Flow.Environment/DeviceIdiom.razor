@@ -1,21 +1,46 @@
 ﻿@namespace EifelMono.Blazor.Flow
 
-<div>
-    Sample not done
-</div>
+<Switch Value="@CurrentDeviceIdiom">
+    <Case Value="@Base.DeviceIdiom.Unknown">
+        @Unknown
+    </Case>
+    <Case Value="@Base.DeviceIdiom.Desktop">
+        @Desktop
+    </Case>
+    <Case Value="@Base.DeviceIdiom.Phone">
+        @Phone
+    </Case>
+    <Case Value="@Base.DeviceIdiom.Tablet">
+        @Tablet
+    </Case>
+    <Case Value="@Base.DeviceIdiom.TV">
+        @TV
+    </Case>
+    <Case Value="@Base.DeviceIdiom.Watch">
+        @Watch
+    </Case>
+</Switch>
 
 @code{
+    [Parameter]
+    public RenderFragment Unknown { get; set; }
     [Parameter]
     public RenderFragment Desktop { get; set; }
     [Parameter]
     public RenderFragment Phone { get; set; }
     [Parameter]
-    public RenderFragment Tablet{ get; set; }
+    public RenderFragment Tablet { get; set; }
     [Parameter]
     public RenderFragment TV { get; set; }
     [Parameter]
     public RenderFragment Watch { get; set; }
-    [Parameter]
-    public RenderFragment Unsupported { get; set; }
+
+    private Base.DeviceIdiom CurrentDeviceIdiom
+    {
+        get
+        {
+            return Base.DeviceIdiom.Unknown;
+        }
+    }
 }
 
