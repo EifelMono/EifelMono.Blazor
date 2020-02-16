@@ -14,18 +14,17 @@ namespace EifelMono.Blazor.Flow.Base
         [Parameter]
         public RenderFragment ChildContent { get; set; }
 
-        protected virtual bool Condition() => false;
+        protected virtual bool IsCondition() => false;
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
-            base.BuildRenderTree(builder);
             if (Then is { } || Else is { })
             {
-                builder?.AddContent(0, Condition() ? Then : Else);
+                builder?.AddContent(0, IsCondition() ? Then : Else);
             }
             else
             {
-                if (Condition())
-                    builder?.AddContent(2, ChildContent);
+                if (IsCondition())
+                    builder?.AddContent(0, ChildContent);
             }
         }
     }

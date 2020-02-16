@@ -1,8 +1,6 @@
-﻿@using EifelMono.Blazor.Flow.Base
+﻿@namespace EifelMono.Blazor.Flow
 
-@namespace EifelMono.Blazor.Flow
-
-<If Value="@Configuration">
+<If Condition="@Configuration">
     <Then>
         @Debug
     </Then>
@@ -12,14 +10,7 @@
 </If>
 
 @code {
-
-    public bool Configuration
-        =>
-#if DEBUG
-        true;
-#else
-        false;
-#endif
+    public bool Configuration => Base.IsDebugBuild.Value;
 
     [Parameter]
     public RenderFragment Debug { get; set; }

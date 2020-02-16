@@ -80,23 +80,23 @@
 
 <h2>If Component's</h2>
 
-<If Value="@true">
+<If Condition="@true">
     <div>If Value is true</div>
 </If>
 
-<If Value="@false">
+<If Condition="@false">
     <div>If Value is false</div>
 </If>
 
-<IfNot Value="@true">
+<IfNot Condition="@true">
     <div>IfNot Value is true</div>
 </IfNot>
 
-<IfNot Value="@false">
+<IfNot Condition="@false">
     <div>IfNot Value is false</div>
 </IfNot>
 
-<If Value="@true">
+<If Condition="@true">
     <Then>
         <div>If Then Value is true</div>
     </Then>
@@ -105,7 +105,7 @@
     </Else>
 </If>
 
-<IfNot Value="@true">
+<IfNot Condition="@true">
     <Then>
         <div>IfNot Then Value is true</div>
     </Then>
@@ -114,7 +114,7 @@
     </Else>
 </IfNot>
 
-<If Value="@false">
+<If Condition="@false">
     <Then>
         <div>If Then Value is false</div>
     </Then>
@@ -123,7 +123,7 @@
     </Else>
 </If>
 
-<IfNot Value="@false">
+<IfNot Condition="@false">
     <Then>
         <div>IfNot Then Value is false</div>
     </Then>
@@ -182,5 +182,4 @@
     {
         TimerCounter++;
     }
-
 }

@@ -2,6 +2,6 @@
 {
     public class IfNotAssigned : IfAssigned
     {
-        protected override bool Condition() => !base.Condition();
+        protected override bool IsCondition() => !base.IsCondition();
     }
 }

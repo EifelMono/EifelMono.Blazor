@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq.Expressions;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 
 namespace EifelMono.Blazor.Flow
 {
@@ -8,9 +6,9 @@ namespace EifelMono.Blazor.Flow
     public class If : Base.IfBase
 #pragma warning restore CA1716 // Identifiers should not match keywords
     {
-        protected override bool Condition() => Value;
+        protected override bool IsCondition() => Condition;
 
         [Parameter]
-        public bool Value { get; set; }
+        public bool Condition { get; set; }
     }
 }

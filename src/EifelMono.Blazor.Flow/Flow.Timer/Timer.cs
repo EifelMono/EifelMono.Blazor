@@ -10,5 +10,6 @@ namespace EifelMono.Blazor.Flow
 
         [Parameter]
         public new TimeSpan Intervall { get => base.Intervall; set => base.Intervall = value; }
+
     }
 }

@@ -2,6 +2,6 @@
 {
     public class ReleaseBuild : DebugBuild
     {
-        protected override bool Condition() => !base.Condition();
+        protected override bool IsCondition() => !base.IsCondition();
     }
 }

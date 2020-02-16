@@ -1,7 +1,46 @@
 ﻿@page "/testplay"
 <h1>Play</h1>
 
-<button class="btn btn-primary" type="button">1</button>
+<ForEach Items="@(Enum.GetNames(typeof(DayOfWeek)))">
+    <div>@context.Index @context.Item</div>
+</ForEach>
+
+<Timer>
+    @code{TestTimerView RefTestTimerView = null;}
+    @{RefTestTimerView.Refresh(); }
+    <TestTimerView @ref="RefTestTimerView">
+    </TestTimerView>
+</Timer>
+
+<button class="btn btn-primary" type="button" @onclick="ButtonClick">Timer Refresh</button>
+
+<button class="btn btn-primary" type="button" @onclick="ButtonClick2">Refresh2</button>
+
+
+<TestTimerView2 @ref="RefTestTimerView2"><TestTimerView></TestTimerView></TestTimerView2>
+
+@code{
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+    }
+
+    async protected void ButtonClick()
+    {
+        // await RefTestTimerView.SetParametersAsync(ParameterView.Empty);
+        this.StateHasChanged();
+    }
+
+    TestTimerView2 RefTestTimerView2;
+    async protected void ButtonClick2()
+    {
+        await RefTestTimerView2.SetParametersAsync(ParameterView.Empty);
+        this.StateHasChanged();
+    }
+}
+
+
 
 
 

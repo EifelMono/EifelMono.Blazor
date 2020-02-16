@@ -11,6 +11,6 @@
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 
-    public bool IsEquals(object value)
+    public bool IsCondition(object value)
         => object.Equals(Value, value);
 }

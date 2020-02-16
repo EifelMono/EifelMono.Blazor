@@ -29,7 +29,6 @@ namespace EifelMono.Blazor.Flow.Base
 
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
-            base.BuildRenderTree(builder);
             if (!(Logger is { }))
                 Logger = LoggerFactory.CreateLogger(Category);
             Logger.Log(LogLevel, Message);

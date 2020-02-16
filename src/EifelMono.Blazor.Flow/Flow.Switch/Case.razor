@@ -2,17 +2,17 @@
 @namespace EifelMono.Blazor.Flow
 @typeparam T
 
-<If Value="@(IsParentOk && IsValueOk)">
+<If Condition="@(IsParentOk && IsValueOk)">
     <Then>
-        <If Value="@Parent.IsEquals(Value)">
+        <If Condition="@Parent.IsCondition(Value)">
             @ChildContent
         </If>
     </Then>
     <Else>
-        <IfNot Value="@IsParentOk">
+        <IfNot Condition="@IsParentOk">
             <FlowError>@ParentErrorMessage</FlowError>
         </IfNot>
-        <IfNot Value="@IsValueOk">
+        <IfNot Condition="@IsValueOk">
             <FlowError>@ValueErrorMessage</FlowError>
         </IfNot>
     </Else>
