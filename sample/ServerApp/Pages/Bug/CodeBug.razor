@@ -20,25 +20,27 @@
 *@
 
 
-<div>Ref with global var</div>
+<div>Ref with code (global) var</div>
+<div>Use code (global) var if you need this in other @@code blocks</div>
 @code {View View1;}
 <View @ref="@View1" Name="View1">
     @View1.ToString()
 </View>
 
-<div>Blazor possible enhancement ref with implicite global var done by compiler</div>
+<div>Blazor possible enhancement ref with implicite code (global) var, done by the compiler</div>
 @*<View @refcodevar="View1a" Name="View1a">
             @View1a.ToString()
     </View>*@
 
 <div>Ref with local var</div>
+<div>Use local var if you need this only in this block</div>
 <div>This only compiles if the View2 is assigned</div>
 @{View View2 = null;}
 <View @ref="@View2" Name="View2">
     @View2.ToString()
 </View>
 
-<div>Blazor possible enhancement ref with implicite local var done by compiler</div>
+<div>Blazor possible enhancement ref with implicite local var, done by the compiler</div>
 @*<View @refvar="View2a" Name="View2a">
         @View2a.ToString()
     </View>*@
