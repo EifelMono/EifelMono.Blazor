@@ -1,6 +1,7 @@
 ﻿@page "/codebug"
 
-<div>Code Bug</div>
+<div>Code Bug? and possible enhancement</div>
+<div>Please look at the code to see more</div>
 
 
 @*View Component!
@@ -15,21 +16,34 @@
 
         public override string ToString()
             => Name;
-    }*
+    }
 *@
 
 
+<div>Ref with global var</div>
 @code {View View1;}
 <View @ref="@View1" Name="View1">
     @View1.ToString()
 </View>
 
+<div>Blazor possible enhancement ref with implicite global var done by compiler</div>
+@*<View @refcodevar="View1a" Name="View1a">
+            @View1a.ToString()
+    </View>*@
 
+<div>Ref with local var</div>
 <div>This only compiles if the View2 is assigned</div>
 @{View View2 = null;}
 <View @ref="@View2" Name="View2">
     @View2.ToString()
 </View>
+
+<div>Blazor possible enhancement ref with implicite local var done by compiler</div>
+@*<View @refvar="View2a" Name="View2a">
+        @View2a.ToString()
+    </View>*@
+
+
 
 
 
