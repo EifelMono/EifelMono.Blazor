@@ -1,0 +1,50 @@
+﻿@page "/codebehavior"
+
+<div>Code Behavior</div>
+<div>Please look at the code to see more</div>
+
+<div>You can use "@@code {;}" multiple times in your razor file.</div>
+<div>@@code {;} generates global code in your razor file.</div>
+<div>"@@ {;}" generates local code inside the current scope</div>
+
+
+<div razorfile="This is the code you see in the most time">
+    <View @ref="@View1">
+    </View>
+
+    @code {
+        private View View1;
+    }
+</div>
+
+<div>Delcare a @@ref var inline in the @@code or @@ block at the place where you need the variable</div>
+
+<div razorfile="@@ref with @@code">
+
+    @code {View View2 = null;}
+    <View @ref="@View2">
+        @View2.ToString()
+    </View>
+
+    @code {
+        //View2 is also here needed
+    }
+
+</div>
+
+<div razorfile="@@ref with @@">
+
+    @{View View3 = null;}
+    <View @ref="@View3">
+        @View3.ToString()
+    </View>
+
+    @code {
+        //View3 is not needed here
+    }
+</div>
+
+
+
+
+

@@ -1,0 +1,35 @@
+﻿@page "/codebug"
+
+<div>Code Bug</div>
+
+
+@*View Component!
+    <div>@ChildContent</div>
+
+    @code {
+        [Parameter]
+        public RenderFragment ChildContent { get; set; }
+
+        [Parameter]
+        public string Name { get; set; }
+
+        public override string ToString()
+            => Name;
+    }*
+*@
+
+
+@code {View View1;}
+<View @ref="@View1" Name="View1">
+    @View1.ToString()
+</View>
+
+
+<div>This only compiles if the View2 is assigned</div>
+@{View View2 = null;}
+<View @ref="@View2" Name="View2">
+    @View2.ToString()
+</View>
+
+
+

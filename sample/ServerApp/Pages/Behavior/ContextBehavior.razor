@@ -1,0 +1,33 @@
+﻿@page "/contextbehavior"
+
+<div>Context Behavior</div>
+<div>Please look at the code to see more</div>
+
+<div>This context works</div>
+<ForEach Items="@Enum.GetNames(typeof(DayOfWeek))">
+    <div>a=@context.Item</div>
+</ForEach>
+
+
+<div>If the an outer context is needed in an inner context then you need an additional variable</div>
+<div>Self declared varibale</div>
+<ForEach Items="@Enum.GetNames(typeof(DayOfWeek))">
+    @{ var dayOfWeekContext1 = context;}
+    <div>a=@context.Item</div>
+    <View>
+        <div>b=@dayOfWeekContext1.Item</div>
+    </View>
+</ForEach>
+
+<div>But Blazor helps you on this</div>
+
+<ForEach Items="@Enum.GetNames(typeof(DayOfWeek))" Context="dayOfWeekContext2">
+    <View>
+        <div>b=@dayOfWeekContext2.Item</div>
+    </View>
+</ForEach>
+
+
+
+
+
