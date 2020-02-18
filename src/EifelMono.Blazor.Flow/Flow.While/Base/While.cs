@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Rendering;
+﻿using System;
+using Microsoft.AspNetCore.Components;
 
 namespace EifelMono.Blazor.Flow.Base
 {
     public class WhileBase : ComponentBase
     {
         [Parameter]
-        public bool Condition { get; set; }
+        public Func<bool> Condition { get; set; } = () => false;
         [Parameter]
         public RenderFragment<WhileContext> ChildContent { get; set; }
 

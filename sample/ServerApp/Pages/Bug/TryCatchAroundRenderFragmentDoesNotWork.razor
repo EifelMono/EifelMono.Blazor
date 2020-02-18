@@ -1,0 +1,29 @@
+﻿@page "/trycatcharroundrenderfragmentdoesnotwork"
+
+<div>The Component</div>
+<div>Please look at the code to see more</div>
+
+
+@*  Component
+    @try
+    {
+        @ChildContent // if a exception is thrown in childconent the program hangs
+    }
+    catch (Exception ex)
+    {
+        Catch(ex);
+    }
+
+    @code {
+        [Parameter]
+        public RenderFragment ChildContent { get; set; }
+
+        [Parameter]
+        public RenderFragment<Exception> Catch { get; set; }
+    }
+*@
+
+
+
+
+

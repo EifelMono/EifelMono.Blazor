@@ -13,7 +13,7 @@ namespace EifelMono.Blazor.Flow
                 if (Break)
                     break;
                 builder?.AddContent(0, ChildContent(new WhileContext(this, index++)));
-            } while (Condition);
+            } while (Condition?.Invoke() ?? false);
         }
     }
 }

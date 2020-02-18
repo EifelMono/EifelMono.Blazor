@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace EifelMono.Blazor.Flow
+﻿namespace EifelMono.Blazor.Flow
 {
     public class WhileContext
     {

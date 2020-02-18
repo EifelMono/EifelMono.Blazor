@@ -10,7 +10,7 @@ namespace EifelMono.Blazor.Flow
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
             var index = 0;
-            while (Condition)
+            while (Condition?.Invoke() ?? false)
             {
                 if (Break)
                     break;
