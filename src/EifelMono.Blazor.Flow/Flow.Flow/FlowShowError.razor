@@ -1,0 +1,12 @@
+﻿@namespace EifelMono.Blazor.Flow
+
+<If Value="@(FlowGlobals.ShowFlowErrors && ChildContent is { })">
+    <div style="background-color:red">
+        FlowError:@ChildContent
+    </div>
+</If>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}

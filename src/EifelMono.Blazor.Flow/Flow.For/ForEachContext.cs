@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EifelMono.Blazor.Flow
+﻿namespace EifelMono.Blazor.Flow
 {
-    public class ForEachContext<T>
+    public class ForEachContext<T>: Base.ComponentContext<ForEach<T>>
     {
-        public ForEachContext(T item, int index)
+        public ForEachContext(ForEach<T> component, T item, int index): base(component)
         {
             Item = item;
             Index = index;

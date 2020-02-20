@@ -1,7 +1,7 @@
 ﻿namespace EifelMono.Blazor.Flow
 {
-    public class DebugBuild : If
+    public class DebugBuild : Base.IfBase
     {
-        protected override bool IsCondition() => Base.IsDebugBuild.Value;
+        protected override bool IsCondition() => FlowGlobals.IsDebug;
     }
 }

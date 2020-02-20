@@ -1,34 +1,19 @@
 ﻿@page "/testplay"
 <h1>Play</h1>
 
+<FlowSetGlobals Context="MyGlobals">
+    <div>ShowConsoleOutput: @MyGlobals.Component.ShowConsoleOutput</div>
+    <div>ShowFlowErrors: @MyGlobals.Component.ShowFlowErrors</div>
+    <div>ThrowFlowErrors: @MyGlobals.Component.ThrowFlowErrors</div>
+</FlowSetGlobals>
 
-<ForEach Items="@(new List<string> { "a", "b", "c", "d"})" Context="foreach1">
-    <div>A @foreach1.Index @foreach1.Item</div>
-    <If Value="@(foreach1.Item!= "b")">
-        <div>B @foreach1.Index @foreach1.Item</div>
-    </If>
-</ForEach>
 
-@*<While Condition="@(()=> true)">
-        @{
-            whileContext = context;
-        }
-        <div>@whileContext.Index</div>
-        <If Condition="@IsIf">
-            @{whileContext.Break();
-            }
-        </If>
-    </While>*@
+<Timer>@DateTime.Now</Timer>
+
 
 @code{
-    WhileContext whileContext;
-
-    bool IsIf()
-    {
-        var b = whileContext.Index > 5;
-        return b;
-    }
 }
+
 
 
 

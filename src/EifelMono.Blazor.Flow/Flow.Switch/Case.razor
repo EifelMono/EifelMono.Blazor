@@ -10,10 +10,10 @@
     </Then>
     <Else>
         <IfNot Value="@IsParentOk">
-            <FlowError>@ParentErrorMessage</FlowError>
+            <FlowShowError>@ParentErrorMessage</FlowShowError>
         </IfNot>
         <IfNot Value="@IsValueOk">
-            <FlowError>@ValueErrorMessage</FlowError>
+            <FlowShowError>@ValueErrorMessage</FlowShowError>
         </IfNot>
     </Else>
 </If>
@@ -35,9 +35,9 @@
 
     protected override void OnInitialized()
     {
-        if (!IsParentOk && FlowError.s_throwOnException)
+        if (!IsParentOk && FlowGlobals.ThrowFlowErrors)
             throw new ArgumentException(nameof(Parent), ParentErrorMessage);
-        if (!IsValueOk && FlowError.s_throwOnException)
+        if (!IsValueOk && FlowGlobals.ThrowFlowErrors)
             throw new ArgumentException(nameof(Parent), ValueErrorMessage);
         base.OnInitialized();
     }

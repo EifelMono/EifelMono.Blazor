@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 
 namespace EifelMono.Blazor.Flow
 {
@@ -17,11 +12,13 @@ namespace EifelMono.Blazor.Flow
         /// <typeparam name="T"></typeparam>
         /// <param name="thisValue"></param>
         /// <returns></returns>
-        public static T Refresh<T>(this T thisValue) where T : ComponentBase
+        public static T RefreshChild<T>(this T thisValue) where T : ComponentBase
         {
+#pragma warning disable CA1062 // Validate arguments of public methods
             if (thisValue is { })
                 _ = thisValue.SetParametersAsync(ParameterView.Empty);
             return thisValue;
+#pragma warning restore CA1062 // Validate arguments of public methods
         }
     }
 }
