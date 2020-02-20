@@ -15,7 +15,7 @@ namespace EifelMono.Blazor.Flow
         {
             var index = 0;
             foreach (var item in Items)
-                builder?.AddContent(0, ChildContent(new ForEachContext<T>(item, index++)));
+                builder?.AddContent(0, ChildContent(new ForEachContext<T>(this, item, index++)));
         }
     }
 }

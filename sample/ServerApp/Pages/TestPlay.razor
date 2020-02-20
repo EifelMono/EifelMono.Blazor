@@ -1,34 +1,34 @@
 ﻿@page "/testplay"
+
 <h1>Play</h1>
 
 
-<ForEach Items="@(new List<string> { "a", "b", "c", "d"})" Context="foreach1">
-    <div>A @foreach1.Index @foreach1.Item</div>
-    <If Value="@(foreach1.Item!= "b")">
-        <div>B @foreach1.Index @foreach1.Item</div>
-    </If>
-</ForEach>
-
-@*<While Condition="@(()=> true)">
-        @{
-            whileContext = context;
-        }
-        <div>@whileContext.Index</div>
-        <If Condition="@IsIf">
-            @{whileContext.Break();
-            }
-        </If>
-    </While>*@
-
-@code{
-    WhileContext whileContext;
-
-    bool IsIf()
-    {
-        var b = whileContext.Index > 5;
-        return b;
-    }
+@code {
+    int Swtich1Value = 0;
+    string abc = "abc";
 }
+
+
+<Switch Value="@DateTime.Now.DayOfWeek">
+    <Case Value="@abc">
+    </Case>
+</Switch>
+
+
+<Case Value="@abc">
+</Case>
+
+<button class="btn btn-primary" @onclick="@(() => testDay= testDay.AddDays(1))">Inc Date</button>
+@code{ DateTime testDay = DateTime.Now;}
+<Switch Value="@testDay.DayOfWeek">
+    <Case Value="DayOfWeek.Monday">Monday</Case>
+    <Case Value="DayOfWeek.Tuesday">Tuesday</Case>
+    <Case Value="DayOfWeek.Wednesday">Wednesday</Case>
+    <Case Value="DayOfWeek.Thursday">Thursday</Case>
+    <Case Value="DayOfWeek.Friday">Friday</Case>
+    <Case Value="DayOfWeek.Saturday">Saturday</Case>
+    <Case Value="DayOfWeek.Sunday">Sunday</Case>
+</Switch>
 
 
 

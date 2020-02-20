@@ -4,41 +4,48 @@
 
 <If Value="@(IsParentOk && IsValueOk)">
     <Then>
-        <If Value="@Parent.IsCondition(Value)">
+        <If Value="@ParentSwitch.IsCondition(Value)">
             @ChildContent
         </If>
     </Then>
     <Else>
         <IfNot Value="@IsParentOk">
-            <FlowError>@ParentErrorMessage</FlowError>
-        </IfNot>
-        <IfNot Value="@IsValueOk">
-            <FlowError>@ValueErrorMessage</FlowError>
+            <Then>
+                <FlowShowError>@ParentErrorMessage</FlowShowError>
+            </Then>
+            <Else>
+                <IfNot Value="@IsValueOk">
+                    <FlowShowError>@ValueErrorMessage</FlowShowError>
+                </IfNot>
+            </Else>
         </IfNot>
     </Else>
 </If>
 
 @code {
     [CascadingParameter]
-    private Switch<T> Parent { get; set; }
+    private ISwitch ParentISwitch { get; set; }
+    [CascadingParameter]
+    private Switch<T> ParentSwitch { get; set; }
 
-    private bool IsParentOk => Parent is Switch<T>;
+    private bool IsParentOk => ParentISwitch is ISwitch;
     protected string ParentErrorMessage => $"{this.GetType().Name} must exist within {nameof(Switch<T>)}";
 
-    private bool IsValueOk => object.Equals(Value?.GetType(), Parent?.Value?.GetType());
-    protected string ValueErrorMessage => $"Type Case.Value {Value?.GetType().Name} must be equal type Switch.value {Parent?.Value?.GetType().Name}";
+    private bool IsValueOk => ParentSwitch is Switch<T>;
+    protected string ValueErrorMessage => $"Type of Case.Value {Value?.GetType().Name} must be equal type of Switch.Value {SwitchValueTypeName}";
     [Parameter]
     public T Value { get; set; }
 
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 
+    private string SwitchValueTypeName { get; set; } = "";
+
     protected override void OnInitialized()
     {
-        if (!IsParentOk && FlowError.s_throwOnException)
-            throw new ArgumentException(nameof(Parent), ParentErrorMessage);
-        if (!IsValueOk && FlowError.s_throwOnException)
-            throw new ArgumentException(nameof(Parent), ValueErrorMessage);
+        var generics = ParentISwitch?.GetType()?.GetGenericArguments() ?? new Type[] { };
+        if ((generics?.Length ?? 0) == 1)
+            SwitchValueTypeName = generics[0].Name;
         base.OnInitialized();
     }
 }

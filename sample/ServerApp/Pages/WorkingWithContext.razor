@@ -1,0 +1,27 @@
+﻿@page "/workingwithcontext"
+
+@inject Microsoft.AspNetCore.Components.NavigationManager UriHelper
+
+<h1>Working with context</h1>
+
+<FlowSetGlobals Context="flowSetGlobalsContext">
+    <div>ShowConsoleOutput: @flowSetGlobalsContext.Component.ShowConsoleOutput</div>
+    <div>ShowFlowErrors: @flowSetGlobalsContext.Component.ShowFlowErrors</div>
+    <button class="btn @BoolColor(flowSetGlobalsContext.Component.ShowFlowErrors)"
+            @onclick="(() => {
+                flowSetGlobalsContext.Component.ShowFlowErrors = !flowSetGlobalsContext.Component.ShowFlowErrors;
+                UriHelper.NavigateTo(UriHelper.Uri, true);
+                })">
+    </button>
+</FlowSetGlobals>
+
+<Case Value="1"></Case>
+
+@code{
+    string BoolColor(bool value)
+        => value ? "btn-primary" : "btn-secondary";
+}
+
+
+
+

@@ -1,0 +1,13 @@
+﻿@Name
+<div>@ChildContent</div>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public string Name { get; set; }
+
+    public override string ToString()
+        => Name;
+}
