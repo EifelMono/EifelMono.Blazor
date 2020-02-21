@@ -39,4 +39,8 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EifelMono.Blazor.Flow\EifelMono.Blazor.Flow.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,0 +1,48 @@
+﻿@namespace EifelMono.Blazor.Bootstrap
+@inherits Base.ClassStyleComponent
+
+<div class="@ClassToRender" style="@StyleToRender">
+    <div class="border rounded">
+        <div class="bg-light">
+            <button class="btn-block p-1" @onclick="ButtonExpandToogle">
+                @ExpanderIcon @Header
+            </button>
+        </div>
+        <If Value="IsExpanded">
+            <div class="border-top mb-1">
+                <div class="m-1">
+                    @ChildContent
+                </div>
+            </div>
+        </If>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public String Header { get; set; }
+
+    [Parameter]
+    public bool IsExpanded { get; set; } = false;
+
+    private MarkupString ExpanderIcon => IsExpanded ? new MarkupString("&#9661;") : new MarkupString("&#9651;");
+
+    public void ButtonExpandToogle()
+    {
+        IsExpanded = !IsExpanded;
+        StateHasChanged();
+    }
+
+    protected override void OnParametersSet()
+    {
+        ClassToRender = new CssBuilder("")
+                            .AddClass(Class)
+                            .Build();
+        StyleToRender = new CssBuilder()
+                            .Build();
+        AttributesToRender.Clear();
+    }
+}
