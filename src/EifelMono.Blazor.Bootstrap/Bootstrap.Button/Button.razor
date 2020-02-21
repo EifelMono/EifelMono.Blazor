@@ -1,0 +1,31 @@
+﻿@namespace EifelMono.Blazor.Bootstrap
+
+@inherits Base.ButtonBase
+
+<button class="@ClassToRender" style="@StyleToRender" @attributes="@AttributesToRender" @onclick="@ButtonOnClick">
+    @ChildContent
+</button>
+
+@code {
+    [Parameter]
+    public EventCallback OnClick { get; set; }
+
+    void ButtonOnClick()
+        => OnClick.InvokeAsync(null);
+
+    protected override void OnParametersSet()
+    {
+        ClassToRender = new CssBuilder("btn")
+                            .AddClass(Class)
+                            .AddClass(Color.ClassToRender(IsOutLine))
+                            .AddClass(Size.ClassToRender())
+                            .AddClass("btn-block", when: IsBlock)
+                            .AddClass("active", when: IsActive)
+                            .Build();
+        StyleToRender = new CssBuilder()
+                            .Build();
+        AttributesToRender.Clear();
+        if (IsDisabled)
+            AttributesToRender.Add("disabled", "");
+    }
+}

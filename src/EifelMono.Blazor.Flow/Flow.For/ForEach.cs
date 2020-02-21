@@ -7,7 +7,7 @@ namespace EifelMono.Blazor.Flow
     public class ForEach<T> : ComponentBase
     {
         [Parameter]
-        public IReadOnlyList<T> Items { get; set; }
+        public IEnumerable<T> Items { get; set; }
         [Parameter]
         public RenderFragment<ForEachContext<T>> ChildContent { get; set; }
 

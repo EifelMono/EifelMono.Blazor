@@ -1,0 +1,24 @@
+﻿@page "/testboostrap/testbutton"
+
+<h1>Bootstrap TestButton</h1>
+
+<ForEach Items="@ButtonSize.Small.Values()" Context="ContextButtonSize">
+    <Div Class="mt-1">
+        <ForEach Items="@ButtonColor.Primary.Values()" Context="ContextButtonColor">
+            <Button Class="@(ContextButtonColor.Index == 0 ? "" : "ml-1")" Color="@ContextButtonColor.Item" Size="@ContextButtonSize.Item">
+                @ContextButtonColor.Item
+                <LineBreak />@ContextButtonSize.Item
+            </Button>
+        </ForEach>
+    </Div>
+</ForEach>
+
+<ForEach Items="@(new bool[] {true, false})" Context="ContextIsOutLine">
+    <ForEach Items="@(new bool[] {true, false})" Context="ContextIsActive">
+        <ForEach Items="@(new bool[] {true, false})" Context="ContextIsDisable">
+            <Button Class="mt-1" Color="ButtonColor.Primary" Size="ButtonSize.Normal" IsOutLine="@ContextIsOutLine.Item" IsActive="@ContextIsActive.Item" IsDisabled="@ContextIsDisable.Item" IsBlock="true">
+                Color="ButtonColor.Primary" Size="ButtonSize.Normal" IsOutLine="@ContextIsOutLine.Item" IsActive="@ContextIsActive.Item" IsDisabled="@ContextIsDisable.Item" IsBlock="true"
+            </Button>
+        </ForEach>
+    </ForEach>
+</ForEach>

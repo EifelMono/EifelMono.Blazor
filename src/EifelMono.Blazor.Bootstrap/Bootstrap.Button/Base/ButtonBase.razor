@@ -1,0 +1,27 @@
+﻿@namespace EifelMono.Blazor.Bootstrap.Base
+@inherits ClassStyleComponent
+
+@ChildContent
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public ButtonColor Color { get; set; } = ButtonColor.Primary;
+
+    [Parameter]
+    public bool IsOutLine { get; set; } = false;
+
+    [Parameter]
+    public ButtonSize Size { get; set; } = ButtonSize.Normal;
+
+    [Parameter]
+    public bool IsBlock { get; set; } = false;
+
+    [Parameter]
+    public bool IsActive { get; set; } = false;
+
+    [Parameter]
+    public bool IsDisabled { get; set; } = false;
+}

@@ -1,0 +1,21 @@
+﻿@namespace EifelMono.Blazor.Bootstrap
+@inherits Base.ClassStyleComponent
+
+<div class="@ClassToRender" style="@StyleToRender">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        ClassToRender = new CssBuilder()
+                            .AddClass(Class)
+                            .Build();
+        StyleToRender = new CssBuilder()
+                            .Build();
+        AttributesToRender.Clear();
+    }
+}
