@@ -1,5 +1,5 @@
 ﻿@namespace EifelMono.Blazor.Bootstrap
-@inherits Base.ClassStyleComponent
+@inherits Base.BootstrapComponent
 
 <div class="@ClassToRender" style="@StyleToRender">
     @ChildContent
@@ -11,11 +11,8 @@
 
     protected override void OnParametersSet()
     {
-        ClassToRender = new CssBuilder()
-                            .AddClass(Class)
-                            .Build();
-        StyleToRender = new CssBuilder()
-                            .Build();
-        AttributesToRender.Clear();
+        ClassToRender.Empty(Class);
+        StyleToRender.Empty(Style);
+        AttributesToRender.Empty();
     }
 }

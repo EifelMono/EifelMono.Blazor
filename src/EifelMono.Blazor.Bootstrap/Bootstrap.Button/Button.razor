@@ -1,7 +1,7 @@
 ﻿@namespace EifelMono.Blazor.Bootstrap
 @inherits Base.ButtonBase
 
-<button class="@ClassToRender" style="@StyleToRender" @attributes="@AttributesToRender" @onclick="@ButtonOnClick">
+<button class="@ClassToRender" style="@StyleToRender" @attributes="@AttributesToRender.Value" @onclick="@ButtonOnClick">
     @ChildContent
 </button>
 
@@ -12,18 +12,28 @@
     void ButtonOnClick()
         => OnClick.InvokeAsync(null);
 
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        string c = ClassToRender;
+
+        string s = StyleToRender;
+        Dictionary<string, object> a = AttributesToRender;
+    }
+
+    protected Dictionary<string, object> Karl => AttributesToRender.Value;
+    protected Dictionary<string, object> Hugo => AttributesToRender;
+
     protected override void OnParametersSet()
     {
-        ClassToRender = new CssBuilder("btn")
-                            .AddClass(Class)
-                            .AddClass(Color.ClassToRender(IsOutLine))
-                            .AddClass(Size.ClassToRender())
-                            .AddClass("btn-block", when: IsBlock)
-                            .AddClass("active", when: IsActive)
-                            .Build();
-        StyleToRender = new CssBuilder()
-                            .Build();
-        AttributesToRender.Clear();
+        ClassToRender.Empty("btn")
+                     .Add(Class)
+                     .Add(Color.ClassToRender(IsOutLine))
+                     .Add(Size.ClassToRender())
+                     .Add("btn-block", when: IsBlock)
+                     .Add("active", when: IsActive);
+        StyleToRender.Empty();
+        AttributesToRender.Empty();
         if (IsDisabled)
             AttributesToRender.Add("disabled", "");
     }
