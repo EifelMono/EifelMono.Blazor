@@ -21,15 +21,17 @@ namespace EifelMono.Blazor.Bootstrap.Base
             return this;
         }
 
-        public AttributeBuilder New(string key = "", object value = default)
-            => Empty(key, value);
-
         public AttributeBuilder Add(string key, object value = default)
         {
             Value.Add(key, value);
             return this;
         }
 
-
+        public AttributeBuilder Add(string key, object value = default, bool when = false)
+        {
+            if (when)
+                Value.Add(key, value);
+            return this;
+        }
     }
 }

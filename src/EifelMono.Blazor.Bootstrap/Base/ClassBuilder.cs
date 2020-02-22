@@ -14,43 +14,45 @@ namespace EifelMono.Blazor.Bootstrap.Base
 
         protected override string CreateValue() => "";
 
-        public ClassBuilder Empty(string @class = "")
+        public ClassBuilder Empty(string @class = "", bool when = true)
         {
-            Value = @class ?? "";
+            Value = "";
+            if (when)
+                Value = @class ?? "";
             return this;
         }
-
-        public ClassBuilder New(string @class = "")
-            => Empty(@class);
+        public ClassBuilder AddClass(string @class, bool when = true)
+            => Add(@class, when);
 
         public ClassBuilder Add(string @class)
         {
-            Value += $" {@class ?? ""}";
+            if (!string.IsNullOrEmpty(@class))
+                Value += $" {@class ?? ""}";
             return this;
         }
 
-        public ClassBuilder Add(string @class, bool when = true)
+        public ClassBuilder Add(string @class, bool when)
         {
             if (when)
                 Add(@class);
             return this;
         }
 
-        public ClassBuilder Add(string @class, Func<bool> when = null)
+        public ClassBuilder Add(string @class, Func<bool> when)
         {
             if ((when is { }) && when())
                 Add(@class);
             return this;
         }
 
-        public ClassBuilder Add(Func<string> @class, bool when = true)
+        public ClassBuilder Add(Func<string> @class, bool when)
         {
             if (@class is { } && when)
                 Add(@class());
             return this;
         }
 
-        public ClassBuilder Add(Func<string> @class, Func<bool> when = null)
+        public ClassBuilder Add(Func<string> @class, Func<bool> when)
         {
             if (@class is { } && when is { } && when())
                 Add(@class());

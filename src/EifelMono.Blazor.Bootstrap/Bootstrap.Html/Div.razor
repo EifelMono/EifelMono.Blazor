@@ -12,7 +12,7 @@
     protected override void OnParametersSet()
     {
         ClassToRender.Empty(Class);
-        StyleToRender.Empty(Style);
+        StyleToRender.Empty().AddStyle(Style);
         AttributesToRender.Empty();
     }
 }
