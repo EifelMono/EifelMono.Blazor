@@ -35,6 +35,7 @@ namespace EifelMono.Blazor.Bootstrap
                ButtonColor.Danger => "danger",
                ButtonColor.Warning => "warning",
                ButtonColor.Info => "info",
+               ButtonColor.Light => "light",
                ButtonColor.Dark => "dark",
                ButtonColor.Link => "link",
            };
