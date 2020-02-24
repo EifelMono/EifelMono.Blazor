@@ -5,6 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\Pages.Flow\**" />
+    <Compile Remove="Pages\Pages.LocalStorage\**" />
+    <Content Remove="Pages\Pages.Flow\**" />
+    <Content Remove="Pages\Pages.LocalStorage\**" />
+    <EmbeddedResource Remove="Pages\Pages.Flow\**" />
+    <EmbeddedResource Remove="Pages\Pages.LocalStorage\**" />
+    <None Remove="Pages\Pages.Flow\**" />
+    <None Remove="Pages\Pages.LocalStorage\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="EifelMono.Fluent" Version="0.1.1" />
   </ItemGroup>
 
@@ -14,11 +25,6 @@
     <ProjectReference Include="..\..\src\EifelMono.Blazor.Flow\EifelMono.Blazor.Flow.csproj" />
     <ProjectReference Include="..\..\src\EifelMono.Blazor.JavaScript\EifelMono.Blazor.JavaScript.csproj" />
     <ProjectReference Include="..\..\src\EifelMono.Blazor.MonacoEditor\EifelMono.Blazor.MonacoEditor.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Pages\Pages.Flow\" />
-    <Folder Include="Pages\Pages.LocalStorage\" />
   </ItemGroup>
 
 </Project>
