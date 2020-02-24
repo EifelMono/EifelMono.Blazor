@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using System;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.Extensions.Logging;
 
@@ -19,7 +20,7 @@ namespace EifelMono.Blazor.Flow.Base
         }
 
         [Parameter]
-        public string Message { get; set; }
+        public Func<string> Message { get; set; }
 
         [Inject]
         public ILoggerFactory LoggerFactory { get; set; }
@@ -31,7 +32,8 @@ namespace EifelMono.Blazor.Flow.Base
         {
             if (!(Logger is { }))
                 Logger = LoggerFactory.CreateLogger(Category);
-            Logger.Log(LogLevel, Message);
+            var message = Message?.Invoke() ?? "";
+            Logger.Log(LogLevel, message);
         }
     }
 }

@@ -26,7 +26,21 @@
     </label>
 </div>
 
-<Button IsBlock="true" IsOutLine="true">Test</Button>
+@{Console.WriteLine("Console"); }
+<LogConsole Message="@(()=> "Hello")"></LogConsole>
+
+@*<LogConsole ForegroundColor="ConsoleColor.White" BackgroundColor="ConsoleColor.Black"></LogConsole>
+    @{Console.WriteLine("Console"); }
+    <LogConsole Message="@(()=>"LogMessage Yellow on Red ColorMessageOnly = true")" ForegroundColor="ConsoleColor.Yellow" BackgroundColor="ConsoleColor.Red" />
+    @{Console.WriteLine("Blank1"); }
+    <LogConsole Message="@(()=>"LogMessage Yellow on Red ColorMessageOnly = false")" ForegroundColor="@ConsoleColor.Yellow" BackgroundColor="ConsoleColor.Red" ColorMessageOnly="false" />
+    @{Console.WriteLine("Blank2"); }
+    <LogConsole Message="@(()=>"LogMessage White on Black ColorMessageOnly = true")" />
+    @{Console.WriteLine("Blank3"); }*@
+
+<Button IsBlock="true" IsOutLine="true">
+    Test
+</Button>
 
 @code {
     int Swtich1Value = 0;

@@ -9,4 +9,10 @@ namespace EifelMono.Blazor.JavaScript
         public SessionStorageJsInterop(IJSRuntime jSRuntime)
             : base(jSRuntime, "EifelMonoBlazorJavaScriptSessionStorageJsInterop") { }
     }
+
+    public class SessionStorageFixKeyJsInterop : Base.StorageBaseFixKey
+    {
+        public SessionStorageFixKeyJsInterop(IJSRuntime jSRuntime, string key)
+            : base(jSRuntime, "EifelMonoBlazorJavaScriptSessionStorageJsInterop", key) { }
+    }
 }

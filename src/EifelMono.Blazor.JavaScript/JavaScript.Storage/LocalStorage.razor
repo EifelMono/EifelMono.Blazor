@@ -1,0 +1,15 @@
+﻿@inject IJSRuntime JSRuntime;
+@namespace EifelMono.Blazor.JavaScript
+
+@ChildContent
+
+@code {
+
+    [Parameter]
+    public RenderFragment<Base.ComponentContext<LocalStorage>> ChildContent { get; set; }
+
+    private LocalStorageJsInterop _localStorageJsInterop = null;
+
+    public LocalStorageJsInterop JsInterop
+        => _localStorageJsInterop ?? (_localStorageJsInterop = new LocalStorageJsInterop(JSRuntime));
+}

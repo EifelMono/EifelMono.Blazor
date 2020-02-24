@@ -7,4 +7,10 @@ namespace EifelMono.Blazor.JavaScript
         public LocalStorageJsInterop(IJSRuntime jSRuntime)
             : base(jSRuntime, "EifelMonoBlazorJavaScriptLocalStorageJsInterop") { }
     }
+
+    public class LocalStorageFixKeyJsInterop : Base.StorageBaseFixKey
+    {
+        public LocalStorageFixKeyJsInterop(IJSRuntime jSRuntime, string key)
+            : base(jSRuntime, "EifelMonoBlazorJavaScriptLocalStorageJsInterop", key) { }
+    }
 }

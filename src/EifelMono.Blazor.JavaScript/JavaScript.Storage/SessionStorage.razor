@@ -1,0 +1,15 @@
+﻿@inject IJSRuntime JSRuntime;
+@namespace EifelMono.Blazor.JavaScript
+
+@ChildContent
+
+@code {
+
+    [Parameter]
+    public RenderFragment<Base.ComponentContext<SessionStorage>> ChildContent { get; set; }
+
+    private SessionStorageJsInterop _sessiongStorageJsInterop = null;
+
+    public SessionStorageJsInterop JsInterop
+        => _sessiongStorageJsInterop ?? (_sessiongStorageJsInterop = new SessionStorageJsInterop(JSRuntime));
+}

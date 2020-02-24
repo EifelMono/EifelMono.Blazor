@@ -66,16 +66,16 @@
 <h2>Log Component's</h2>
 
 <div>Writing Logs with Microsoft.Extensions.Logging and ILoggerFactory</div>
-<Log Message="@($"{DateTime.Now} Log")"></Log>
+<Log Message="@(()=>$"{DateTime.Now} Log")"></Log>
 
-<Log LogLevel="@Microsoft.Extensions.Logging.LogLevel.Debug" Message="@($"{DateTime.Now} Log LogLevel")"></Log>
+<Log LogLevel="@Microsoft.Extensions.Logging.LogLevel.Debug" Message="@(()=>$"{DateTime.Now} Log LogLevel")"></Log>
 
-<LogCritical Message="@($"{DateTime.Now} LogCritical")"></LogCritical>
-<LogDebug Message="@($"{DateTime.Now} LogDebug")"></LogDebug>
-<LogError Message="@($"{DateTime.Now} LogError")"></LogError>
-<LogInformation Message="@($"{DateTime.Now} LogInformation")"></LogInformation>
-<LogTrace Message="@($"{DateTime.Now} LogTrace")"></LogTrace>
-<LogWarning Message="@($"{DateTime.Now} LogWarning")"></LogWarning>
+<LogCritical Message="@(()=>$"{DateTime.Now} LogCritical")"></LogCritical>
+<LogDebug Message="@(()=>$"{DateTime.Now} LogDebug")"></LogDebug>
+<LogError Message="@(()=>$"{DateTime.Now} LogError")"></LogError>
+<LogInformation Message="@(()=>$"{DateTime.Now} LogInformation")"></LogInformation>
+<LogTrace Message="@(()=>$"{DateTime.Now} LogTrace")"></LogTrace>
+<LogWarning Message="@(()=>$"{DateTime.Now} LogWarning")"></LogWarning>
 <hr />
 
 <h2>If Component's</h2>
@@ -138,7 +138,7 @@
 }
 <IfStringIsNullOrEmpty Value="@Text">
     <div>IfNotStringIsNullOrEmpty is null or empty</div>
-    <LogTrace Message="IfNotStringIsNullOrEmpty is null or empty"></LogTrace>
+    <LogTrace Message="@(()=> "IfNotStringIsNullOrEmpty is null or empty")"></LogTrace>
 </IfStringIsNullOrEmpty>
 
 @{
@@ -147,7 +147,7 @@
 <IfNotStringIsNullOrEmpty Value="@Text">
     <div>IfNotStringIsNullOrEmpty is not null or empty</div>
     <div>Value=@Text</div>
-    <LogTrace Message="IfNotStringIsNullOrEmpty is not null or empty"></LogTrace>
+    <LogTrace Message="@(()=> "IfNotStringIsNullOrEmpty is not null or empty")"></LogTrace>
 </IfNotStringIsNullOrEmpty>
 <hr />
 
