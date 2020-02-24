@@ -3,14 +3,14 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace EifelMono.Blazor.MonacoEditor
 {
-    public class Init : HostHtmlInit
+    public class MonacoEditorEntry : HostHtmlEntry
     {
-        public override string GetHtml(HostHtmlInitType initType, string typeName = null)
+        public override string GetHtml(HostHtmlEntryType initType, string otherName = null)
             => initType switch
             {
-                HostHtmlInitType.Css => Css,
-                HostHtmlInitType.Js => Js,
-                HostHtmlInitType.JsInterop => JsInterop,
+                HostHtmlEntryType.Css => Css,
+                HostHtmlEntryType.Js => Js,
+                HostHtmlEntryType.JsInterop => JsInterop,
                 _ => ""
             };
 
@@ -23,14 +23,14 @@ namespace EifelMono.Blazor.MonacoEditor
             + $"\r\n<script src = \"_content/{Name}/monaco-editor/min/vs/editor/editor.main.nls.js\"></script>"
             + $"\r\n<script src = \"_content/{Name}/monaco-editor/min/vs/editor/editor.main.js\" ></script>";
         private string JsInterop =>
-            $"<script src = \"_content/{Name}/MonacoEditorJSInterop.js\"></script>";
+            $"<script src = \"_content/{Name}/MonacoEditorJsInterop.js\"></script>";
     }
 
-    public static class MonacoEditorServiceExtensions
+    public static class ServiceCollectionExtensions
     {
         public static IServiceCollection AddEifelMonoBlazorMonacoEditor(this IServiceCollection thisValue)
         {
-            HostHtmlInits.Instance.AddInit(new Init());
+            HostHtmlGlobals.RegisterEntry(new MonacoEditorEntry());
             return thisValue;
         }
     }

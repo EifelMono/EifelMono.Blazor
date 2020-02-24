@@ -1,4 +1,4 @@
-window.EifelMonoBlazorJavaScriptMessageBoxJSInterop = {
+window.EifelMonoBlazorJavaScriptMessageBoxJsInterop = {
     Show: text => alert(text)
 };
 

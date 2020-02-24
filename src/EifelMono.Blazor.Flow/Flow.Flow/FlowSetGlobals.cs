@@ -16,7 +16,8 @@ namespace EifelMono.Blazor.Flow
 
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
-            builder?.AddContent(0, ChildContent(new Base.ComponentContext<FlowSetGlobals>(this)));
+            if (ChildContent is { })
+                builder?.AddContent(0, ChildContent(new Base.ComponentContext<FlowSetGlobals>(this)));
         }
     }
 }

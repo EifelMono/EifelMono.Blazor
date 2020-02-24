@@ -3,14 +3,14 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace EifelMono.Blazor.JavaScript
 {
-    internal class Init : HostHtmlInit
+    internal class JavaScriptEntry : HostHtmlEntry
     {
-        public override string GetHtml(HostHtmlInitType initType, string userName = null)
-            => initType switch
+        public override string GetHtml(HostHtmlEntryType entryType, string otherName = null)
+            => entryType switch
             {
-                HostHtmlInitType.Css => "",
-                HostHtmlInitType.Js => "",
-                HostHtmlInitType.JsInterop => SessionJsInterop,
+                HostHtmlEntryType.Css => "",
+                HostHtmlEntryType.Js => "",
+                HostHtmlEntryType.JsInterop => SessionJsInterop,
                 _ => ""
             };
 
@@ -22,12 +22,11 @@ namespace EifelMono.Blazor.JavaScript
 
     }
 
-    public static class JavaScriptAddService
+    public static class ServiceCollectionExtensions
     {
         public static IServiceCollection AddEifelMonoBlazorJavaScript(this IServiceCollection thisValue)
-
         {
-            HostHtmlInits.Instance.AddInit(new Init());
+            HostHtmlGlobals.RegisterEntry(new JavaScriptEntry());
             return thisValue;
         }
     }

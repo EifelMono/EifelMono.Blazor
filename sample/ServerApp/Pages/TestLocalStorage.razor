@@ -2,6 +2,8 @@
 @using Microsoft.AspNetCore.Components
 @using System.IO
 @using EifelMono.Blazor.JavaScript
+@inject IJSRuntime JSRuntime
+
 <h1>Local Storage</h1>
 
 <p>Current count: @currentCount</p>
@@ -23,8 +25,8 @@
         try
         {
             currentCount = 0;
-            if (await LocalStorage.KeyExistsAsync("counter"))
-                currentCount = await LocalStorage.GetValueAsync<int>("counter");
+            if (await JSRuntime.LocalStorage().KeyExistsAsync("counter"))
+                currentCount = await JSRuntime.LocalStorage().GetValueAsync<int>("counter");
         }
         catch (Exception ex)
         {
@@ -38,20 +40,20 @@
     async void IncrementCount()
     {
         currentCount++;
-        await LocalStorage.SetValueAsync("counter", currentCount);
-        var o= await MessageBox.ShowAsync("hallo");
+        await JSRuntime.LocalStorage().SetValueAsync("counter", currentCount);
+        var o= await JSRuntime.MessageBox().ShowAsync("hallo");
         var x = o.ToJson();
-        o = await Clipboard.WriteTextAsync("TextFromJavaScript");
+        o = await JSRuntime.Clipboard().WriteTextAsync("TextFromJavaScript");
         x = o.ToJson();
     }
     async void ResetCount()
     {
         currentCount = 0;
-        await LocalStorage.SetValueAsync("counter", currentCount);
+        await JSRuntime.LocalStorage().SetValueAsync("counter", currentCount);
     }
 
     async void DeleteStorage()
     {
-        await LocalStorage.DeleteKeyAsync("counter");
+        await JSRuntime.LocalStorage().DeleteKeyAsync("counter");
     }
 }

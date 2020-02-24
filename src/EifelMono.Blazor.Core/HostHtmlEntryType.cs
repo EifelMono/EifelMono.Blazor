@@ -1,10 +1,10 @@
 ﻿namespace EifelMono.Blazor.Core
 {
-    public enum HostHtmlInitType
+    public enum HostHtmlEntryType
     {
         Css,
         Js,
         JsInterop,
-        User
+        Other
     }
 }

@@ -1,4 +1,4 @@
-window.EifelMonoBlazorJavaScriptClipboardJSInterop = {
+window.EifelMonoBlazorJavaScriptClipboardJsInterop = {
     WriteText: async (text) => {
         if (navigator.clipboard) {
             try {

@@ -3,19 +3,19 @@ using System.Threading.Tasks;
 
 namespace EifelMono.Blazor.MonacoEditor
 {
-    public class MonacoEditorJSInterop
+    public class MonacoEditorJsInterop : Core.Base.JsInteropBase
     {
-        internal static readonly string s_jSPrefix = "EifelMonoBlazorMonacoEditor";
-        public static ValueTask<bool> InitializeEditorAsync(MonacoEditorModel editorModel)
-            => Core.HostHtmlInit.JSRuntime.InvokeAsync<bool>($"{s_jSPrefix}.Editor.InitializeEditor", new[] { editorModel });
+        public MonacoEditorJsInterop(IJSRuntime jSRuntime) : base(jSRuntime, "EifelMonoBlazorMonacoEditorJsInterop") { }
+        public ValueTask<bool> InitializeEditorAsync(MonacoEditorModel editorModel)
+            => JSRuntime.InvokeAsync<bool>($"{JSPrefix}.Editor.InitializeEditor", new[] { editorModel });
 
-        public static ValueTask<string> GetValueAsync(string id)
-            => Core.HostHtmlInit.JSRuntime.InvokeAsync<string>($"{s_jSPrefix}.Editor.GetValue", new[] { id });
+        public ValueTask<string> GetValueAsync(string id)
+            => JSRuntime.InvokeAsync<string>($"{JSPrefix}.Editor.GetValue", new[] { id });
 
-        public static ValueTask<bool> SetValueAsync(string id, string value)
-            => Core.HostHtmlInit.JSRuntime.InvokeAsync<bool>($"{s_jSPrefix}.Editor.SetValue", new[] { id, value });
+        public ValueTask<bool> SetValueAsync(string id, string value)
+            => JSRuntime.InvokeAsync<bool>($"{JSPrefix}.Editor.SetValue", new[] { id, value });
 
-        public static ValueTask<bool> SetThemeAsync(string id, string theme)
-            => Core.HostHtmlInit.JSRuntime.InvokeAsync<bool>($"{s_jSPrefix}.Editor.SetTheme", new[] { id, theme });
+        public ValueTask<bool> SetThemeAsync(string id, string theme)
+            => JSRuntime.InvokeAsync<bool>($"{JSPrefix}.Editor.SetTheme", new[] { id, theme });
     }
 }

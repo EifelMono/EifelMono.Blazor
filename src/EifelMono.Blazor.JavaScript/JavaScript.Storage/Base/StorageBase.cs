@@ -1,25 +1,20 @@
 ﻿using System;
 using System.Threading.Tasks;
-using EifelMono.Blazor.Core;
 using EifelMono.Fluent.Log;
 using Microsoft.JSInterop;
 
-namespace EifelMono.Blazor.JavaScript
+namespace EifelMono.Blazor.JavaScript.Base
 {
-    public class StorageJsInterop
+    public class StorageBase : Core.Base.JsInteropBase
     {
-        protected string _jSPrefix;
-        public StorageJsInterop(string jSPrefix)
-        {
-            _jSPrefix = jSPrefix;
-        }
+        public StorageBase(IJSRuntime jSRuntime, string jSPrefix) : base(jSRuntime, jSPrefix) { }
 
         #region Exists
         public async ValueTask<(bool Ok, bool Value)> KeyExistsSafeAsync(string key)
         {
             try
             {
-                return (true, await HostHtmlInit.JSRuntime.InvokeAsync<bool>($"{_jSPrefix}.exists", key).ConfigureAwait(false));
+                return (true, await JSRuntime.InvokeAsync<bool>($"{JSPrefix}.exists", key).ConfigureAwait(false));
             }
             catch (Exception ex)
             {
@@ -37,7 +32,7 @@ namespace EifelMono.Blazor.JavaScript
         {
             try
             {
-                return (true, await HostHtmlInit.JSRuntime.InvokeAsync<T>($"{_jSPrefix}.get", key));
+                return (true, await JSRuntime.InvokeAsync<T>($"{JSPrefix}.get", key));
             }
             catch (Exception ex)
             {
@@ -55,7 +50,7 @@ namespace EifelMono.Blazor.JavaScript
         {
             try
             {
-                return (true, await HostHtmlInit.JSRuntime.InvokeAsync<bool>($"{_jSPrefix}.set", key, value).ConfigureAwait(false));
+                return (true, await JSRuntime.InvokeAsync<bool>($"{JSPrefix}.set", key, value).ConfigureAwait(false));
             }
             catch (Exception ex)
             {
@@ -73,7 +68,7 @@ namespace EifelMono.Blazor.JavaScript
         {
             try
             {
-                return (true, await HostHtmlInit.JSRuntime.InvokeAsync<bool>($"{_jSPrefix}.delete", key).ConfigureAwait(false));
+                return (true, await JSRuntime.InvokeAsync<bool>($"{JSPrefix}.delete", key).ConfigureAwait(false));
             }
             catch (Exception ex)
             {

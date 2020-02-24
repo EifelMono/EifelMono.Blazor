@@ -4,6 +4,8 @@
 @using Microsoft.JSInterop
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
+@inject IJSRuntime JsRuntime
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,10 +16,10 @@
     <base href="~/" />
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
     <link href="css/site.css" rel="stylesheet" />
-   
-    @Html.EifelMonoHostHtmlInitCss()
 
-    @Html.EifelMonoHostHtmlInitJs()
+    @Html.EifelMonoHostHtmlUseCss()
+
+    @Html.EifelMonoHostHtmlUseJs()
 </head>
 <body>
     <app>
@@ -29,6 +31,6 @@
     @*<script src="_content/EifelMono.Blazor.JavaScript/SessionJsInterop.js"></script>*@
     @*<script src="SessionJsInterop.js"></script>*@
 
-    @Html.EifelMonoHostHtmlInitJsInterop()
+    @Html.EifelMonoHostHtmlUseJsInterop()
 </body>
 </html>

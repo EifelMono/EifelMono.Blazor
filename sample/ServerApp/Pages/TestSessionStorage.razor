@@ -2,6 +2,8 @@
 @using Microsoft.AspNetCore.Components
 @using System.IO
 @using EifelMono.Blazor.JavaScript
+@inject IJSRuntime JSRuntime
+
 <h1>Session Storage</h1>
 
 <p>Current count: @currentCount</p>
@@ -23,8 +25,8 @@
         try
         {
             currentCount = 0;
-            if (await SessionStorage.KeyExistsAsync("counter"))
-                currentCount = await SessionStorage.GetValueAsync<int>("counter");
+            if (await JSRuntime.SessionStorage().KeyExistsAsync("counter"))
+                currentCount = await JSRuntime.SessionStorage().GetValueAsync<int>("counter");
         }
         catch (Exception ex)
         {
@@ -37,16 +39,16 @@
     async void IncrementCount()
     {
         currentCount++;
-        await SessionStorage.SetValueAsync("counter", currentCount);
+        await JSRuntime.SessionStorage().SetValueAsync("counter", currentCount);
     }
     async void ResetCount()
     {
         currentCount = 0;
-        await SessionStorage.SetValueAsync("counter", currentCount);
+        await JSRuntime.SessionStorage().SetValueAsync("counter", currentCount);
     }
 
     async void DeleteStorage()
     {
-        await SessionStorage.DeleteKeyAsync("counter");
+        await JSRuntime.SessionStorage().DeleteKeyAsync("counter");
     }
 }

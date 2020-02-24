@@ -2,6 +2,8 @@
 @using EifelMono.Blazor.Core
 @inject IJSRuntime JsRuntime
 
+@inject IServiceProvider ServiceProvider
+
 <div class="sidebar">
     <NavMenu />
 </div>
@@ -20,8 +22,6 @@
 
     protected override void OnInitialized()
     {
-        this.EifelMonoMainLayoutInit(JsRuntime);
-        base.OnInitialized();
+        // Globals._jSRuntime = JsRuntime;
     }
-
 }

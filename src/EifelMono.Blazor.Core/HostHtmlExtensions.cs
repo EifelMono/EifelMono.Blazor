@@ -10,60 +10,40 @@ namespace EifelMono.Blazor.Core
 {
     public static class HostHtmlExtensions
     {
-        private static Func<HostHtmlInitType, string, string> onHostHtmlUser;
+        private static Func<HostHtmlEntryType, string, string> onHostHtmlUser;
 
-        public static Func<HostHtmlInitType, string, string> GetOnHostHtmlUser()
-        {
-            return onHostHtmlUser;
-        }
+        public static Func<HostHtmlEntryType, string, string> GetOnHostHtmlUser()
+            => onHostHtmlUser;
 
-        public static void SetOnBlazorHtml(Func<HostHtmlInitType, string, string> value)
-        {
-            onHostHtmlUser = value;
-        }
+        public static void SetOnBlazorHtml(Func<HostHtmlEntryType, string, string> value)
+            => onHostHtmlUser = value;
 
-        internal static IHtmlContent BlazorComponentsCustom<T>(this IHtmlHelper<T> thisValue, HostHtmlInitType initType, string userName = null)
+        internal static IHtmlContent EifelMonoHostHtmlUseType<T>(this IHtmlHelper<T> thisValue, HostHtmlEntryType entryType, string otherName = null)
         {
             var sb = new StringBuilder();
-            if (initType == HostHtmlInitType.User && !string.IsNullOrEmpty(userName))
+            if (entryType == HostHtmlEntryType.Other && !string.IsNullOrEmpty(otherName))
             {
-                sb.AppendLine($"<!-- BlazorHtmlInit {initType.ToString()} {userName ?? ""} -->");
+                sb.AppendLine($"<!-- BlazorHtmlUse {entryType} {otherName ?? ""} -->");
                 if (GetOnHostHtmlUser() is { })
-                    foreach (var item in HostHtmlInits.Instance.Items)
-                        sb.AppendLine(GetOnHostHtmlUser()(initType, userName));
+                    foreach (var item in HostHtmlGlobals.Entries)
+                        sb.AppendLine(GetOnHostHtmlUser()(entryType, otherName));
             }
             else
             {
-                sb.AppendLine($"<!-- BlazorHtmlInit {initType.ToString()} -->");
-                foreach (var item in HostHtmlInits.Instance.Items)
-                {
-                    var html = item.GetHtml(initType, userName);
-                    if (GetOnHostHtmlUser() is { })
-                        html = GetOnHostHtmlUser()(initType, userName);
-                    sb.AppendLine(item.GetHtml(initType));
-                }
+                sb.AppendLine($"<!-- BlazorHtmlUse {entryType} -->");
+                foreach (var item in HostHtmlGlobals.Entries)
+                    sb.AppendLine(item.GetHtml(entryType));
             }
             return new HtmlString(sb.ToString());
         }
 
-        public static IHtmlContent EifelMonoHostHtmlInit<T>(this IHtmlHelper<T> thisValue, IJSRuntime jSRuntime)
-        {
-            HostHtmlInit.JSRuntime = jSRuntime;
-            return new HtmlString("");
-        }
-
-        public static void EifelMonoMainLayoutInit(this ComponentBase thisValue, IJSRuntime jSRuntime)
-        {
-            HostHtmlInit.JSRuntime = jSRuntime;
-        }
-
-        public static IHtmlContent EifelMonoHostHtmlInitCss<T>(this IHtmlHelper<T> thisValue)
-            => thisValue.BlazorComponentsCustom<T>(HostHtmlInitType.Css);
-        public static IHtmlContent EifelMonoHostHtmlInitJs<T>(this IHtmlHelper<T> thisValue)
-            => thisValue.BlazorComponentsCustom<T>(HostHtmlInitType.Js);
-        public static IHtmlContent EifelMonoHostHtmlInitJsInterop<T>(this IHtmlHelper<T> thisValue)
-            => thisValue.BlazorComponentsCustom<T>(HostHtmlInitType.JsInterop);
-        public static IHtmlContent EifelMonoHostHtmlInitUser<T>(this IHtmlHelper<T> thisValue, string userName)
-            => thisValue.BlazorComponentsCustom<T>(HostHtmlInitType.User, userName);
+        public static IHtmlContent EifelMonoHostHtmlUseCss<T>(this IHtmlHelper<T> thisValue)
+            => thisValue.EifelMonoHostHtmlUseType<T>(HostHtmlEntryType.Css);
+        public static IHtmlContent EifelMonoHostHtmlUseJs<T>(this IHtmlHelper<T> thisValue)
+            => thisValue.EifelMonoHostHtmlUseType<T>(HostHtmlEntryType.Js);
+        public static IHtmlContent EifelMonoHostHtmlUseJsInterop<T>(this IHtmlHelper<T> thisValue)
+            => thisValue.EifelMonoHostHtmlUseType<T>(HostHtmlEntryType.JsInterop);
+        public static IHtmlContent EifelMonoHostHtmlUseUser<T>(this IHtmlHelper<T> thisValue, string otherName)
+            => thisValue.EifelMonoHostHtmlUseType<T>(HostHtmlEntryType.Other, otherName);
     }
 }
